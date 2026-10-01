@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creative heart of Huaitoei — ศูนย์กลางข้อมูลและเรื่องราวชุมชนดิจิทัล</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Sarabun:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#012d1d",
+            "primary-container": "#1b4332",
+            "secondary": "#9d4413",
+            "secondary-container": "#fd8d58",
+            "secondary-fixed": "#ffdbcc",
+            "tertiary": "#322400",
+            "tertiary-fixed": "#ffdf96",
+            "surface": "#f9f9fb",
+            "surface-dim": "#d9dadc",
+            "surface-bright": "#f9f9fb",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f6",
+            "surface-container": "#edeef0",
+            "surface-container-high": "#e8e8ea",
+            "on-surface": "#1a1c1e",
+            "on-surface-variant": "#414844",
+            "outline": "#717973",
+            "outline-variant": "#c1c8c2",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "Sarabun", "sans-serif"]
+          }
+        }
+      }
+    }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .custom-scroll::-webkit-scrollbar { width: 6px; }
+  .custom-scroll::-webkit-scrollbar-thumb { background: #c1c8c2; border-radius: 9999px; }
+</style>
+<style>
+#admOpen{position:fixed;left:10px;bottom:10px;z-index:30;font:600 11px sans-serif;padding:4px 10px;border-radius:999px;border:1px solid #c1c8c2;background:#fff;color:#414844;opacity:.55;cursor:pointer}
+#admOpen:hover{opacity:1}
+#admRoot{position:fixed;inset:0;z-index:70;overflow:auto;background:#f9f9fb;color:#1a1c1e;font:15px/1.5 Sarabun,sans-serif}
+#admRoot[hidden]{display:none}
+#admRoot button{font:inherit;cursor:pointer;border-radius:999px;border:1px solid #e5e7eb;background:#fff;padding:5px 14px;color:#1a1c1e}
+#admRoot button.on,#admRoot button.pri{background:#1b4332;color:#fff;border-color:#1b4332}#admRoot button.danger{color:#ba1a1a}
+.adm-h{background:#1b4332;color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.adm-note{background:#ffdf96;color:#322400;padding:8px 20px;font-size:13px}
+.adm-m{max-width:1180px;margin:20px auto;padding:0 16px}#admTabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.adm-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.adm-bar h3{margin:0;font-size:18px;font-weight:700}
+.adm-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:12px;overflow-x:auto}
+#admRoot table{width:100%;border-collapse:collapse}#admRoot th,#admRoot td{text-align:left;padding:8px;border-bottom:1px solid #e5e7eb;vertical-align:top;font-size:14px}
+#admRoot th{font-size:12px;color:#717973}#admRoot td.act{white-space:nowrap}
+.pill{border-radius:999px;padding:1px 10px;font-size:12px;background:#edeef0}.pill.new{background:#ffdbcc;color:#7c2e00}.pill.done{background:#c1ecd4;color:#002114}
+#admDlg{border:0;border-radius:16px;padding:20px;width:min(640px,94vw);max-height:90vh;overflow:auto;color:#1a1c1e}#admDlg::backdrop{background:rgba(0,0,0,.4)}
+#admDlg label{display:block;margin:10px 0 2px;font-size:13px;font-weight:600}
+#admDlg input[type=text],#admDlg input[type=number],#admDlg select,#admDlg textarea{width:100%;font:inherit;padding:8px 12px;border:1.5px solid #e5e7eb;border-radius:12px;background:#fff}
+#admDlg textarea{min-height:90px}.adm-row{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+</style>
+</head>
+<body class="bg-[#f9f9fb] text-[#1a1c1e] font-sans antialiased selection:bg-[#ffdbcc] selection:text-[#9d4413]">
+<!-- NOTIFICATION TOAST -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 bg-[#012d1d] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10" id="toast">
+<span class="material-symbols-outlined text-[#ffdbcc]" id="toastIcon">check_circle</span>
+<span class="text-sm font-medium" id="toastMessage">บันทึกเรียบร้อย</span>
+</div>
+<!-- HEADER NAVIGATION -->
+<header class="bg-[#f9f9fb]/90 backdrop-blur-md sticky top-0 z-40 border-b border-gray-200">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<a class="flex items-center gap-3" href="#">
+<div class="w-11 h-11 rounded-xl bg-[#1b4332] text-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-2xl">local_florist</span>
+</div>
+<div><div class="font-bold text-lg text-[#012d1d] leading-tight">Creative heart of Huaitoei</div><div class="text-xs text-gray-500 tracking-wider">LIVING HERITAGE &amp; COMMUNITY HUB</div></div>
+</a>
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+<a class="text-[#012d1d] font-bold hover:text-[#9d4413] transition" href="#villages">7 หมู่บ้าน</a>
+<a class="hover:text-[#012d1d] transition" href="#stories">เรื่องเล่า &amp; ภูมิปัญญา (7 ชุมชน)</a>
+<a class="hover:text-[#012d1d] transition" href="#contact">ติดต่อ อบต.</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition relative" onclick="toggleFav()" title="รายการโปรด">
+<span class="material-symbols-outlined text-xl text-gray-600" id="favIcon">favorite</span>
+<span class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-[#9d4413] text-white text-[10px] font-bold flex items-center justify-center" id="favBadge">3</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition" onclick="showToast('เปลี่ยนเป็นระบบ 2 ภาษา (TH/EN) เรียบร้อย', 'language')" title="Language">
+<span class="material-symbols-outlined text-xl text-gray-600">language</span>
+</button>
+<a class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#1b4332] text-white text-sm font-medium hover:bg-[#012d1d] transition" href="#villages">
+<span class="material-symbols-outlined text-sm">search</span>
+<span>ค้นหาภูมิปัญญา</span>
+</a>
+</div>
+</div>
+</header>
+<!-- HERO DISCOVERY SECTION -->
+<section class="pt-8 pb-16 px-6 bg-[#f9f9fb]">
+<div class="max-w-7xl mx-auto">
+<div class="relative rounded-3xl overflow-hidden shadow-xl min-h-[420px] flex flex-col justify-end p-8 md:p-12 mb-8 bg-[#012d1d]">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDN_u6BaqtgOAekmWy8D0CZo8_TDGVf8qafOfmABOP_p7LZxBRprEokWZ-1iYpaDmBPd1xUE_0d2x7O-vUPyuLsLqQ7Lxj_Y84b30xbPEcyomaz4caB5vufV1MH6BdML4WD2zoe6UVxlxJN2el1UUddaDzGQgLtTG-e8io_v3c2-TddeBkJbtbHBG2ghcQgm1-Zkmvaz9K4Iv458qesPiWqpVqC1y9n5nVl1stBs59KWPrlQ9xFY7sn')"></div>
+<div class="relative z-10 max-w-2xl text-white">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur text-xs mb-4">
+<span class="w-2 h-2 rounded-full bg-[#ffdbcc] animate-pulse"></span>
+<span>Creative heart of Huaitoei (Living Heritage Portal)</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">
+          ค้นพบคุณค่าและวิถีชีวิตแห่ง <br/><span class="text-[#ffdbcc]">ตำบลห้วยเตย</span>
+</h1>
+<p class="text-gray-200 text-base md:text-lg font-light">
+          "หนึ่งตำบล เจ็ดหมู่บ้าน หลายเรื่องราว หลายผลิตภัณฑ์" — สำรวจอัตลักษณ์ ประวัติความเป็นมา ภูมิปัญญาสืบทอด และผลิตภัณฑ์ชุมชนทั้ง 7 หมู่บ้าน
+        </p>
+</div>
+</div>
+<!-- SEARCH DOCK -->
+<div class="-mt-14 relative z-20 max-w-4xl mx-auto">
+<div class="bg-white rounded-2xl shadow-xl p-3 border border-gray-100 flex flex-col md:flex-row gap-3 items-center">
+<div class="flex-1 flex items-center gap-3 px-3 w-full">
+<span class="material-symbols-outlined text-gray-400">holiday_village</span>
+<div class="flex-1">
+<label class="block text-[11px] font-bold text-gray-400 uppercase">เลือกหมู่บ้านเป้าหมาย</label>
+<select class="w-full border-0 p-0 text-sm font-semibold text-gray-800 focus:ring-0 cursor-pointer" id="heroSelect">
+<option value="all">ทุกหมู่บ้าน (ม.1 - ม.7)</option>
+<option value="1">ม.1 บ้านห้วยเตย (ไหมน้ำเตย)</option>
+<option value="2">ม.2 บ้านห้วยฝาย (เสื่อทอมือลายโบราณ)</option>
+<option value="3">ม.3 บ้านโสกผาแก้ว (สานตะกร้า)</option>
+<option value="4">ม.4 บ้านสว่าง (วิสาหกิจผักปลอดสารพิษ)</option>
+<option value="5">ม.5 บ้านหลุบเลา (ลูกประคบ)</option>
+<option value="6">ม.6 บ้านซำโอง (ผักปลอดสารพิษ)</option>
+<option value="7">ม.7 บ้านหนองขาม (ลูกประคบ)</option>
+</select>
+</div>
+</div>
+<div class="hidden md:block w-px h-10 bg-gray-200"></div>
+<div class="flex-1 flex items-center gap-3 px-3 w-full">
+<span class="material-symbols-outlined text-gray-400">search</span>
+<div class="flex-1">
+<label class="block text-[11px] font-bold text-gray-400 uppercase">ค้นหาภูมิปัญญาหรือเรื่องเล่า</label>
+<input class="w-full border-0 p-0 text-sm text-gray-800 focus:ring-0 placeholder-gray-400" id="heroKeyword" placeholder="ชื่อสินค้า ปราชญ์ หรือชุมชน..." type="text"/>
+</div>
+</div>
+<button class="w-full md:w-auto px-6 py-3.5 rounded-xl bg-[#9d4413] hover:bg-[#7e340d] text-white font-semibold text-sm transition flex items-center justify-center gap-2 shadow-md" onclick="handleSearch()">
+<span class="material-symbols-outlined text-base">search</span>
+<span>ค้นหาข้อมูลตำบล</span>
+</button>
+</div>
+<!-- Quick Metrics -->
+<div class="mt-6 grid grid-cols-2 sm:grid-cols-5 gap-3 text-center">
+<div class="bg-white/80 backdrop-blur py-3 px-4 rounded-xl border border-gray-200 shadow-xs cursor-pointer hover:bg-gray-50 transition" onclick="filterByCat('all', document.querySelector('.f-btn'))">
+<span class="block text-xl font-bold text-[#012d1d]">7 หมู่บ้าน</span>
+<span class="text-xs text-gray-500">อัตลักษณ์วัฒนธรรม</span>
+</div>
+<div class="bg-white/80 backdrop-blur py-3 px-4 rounded-xl border border-gray-200 shadow-xs">
+<span class="block text-xl font-bold text-[#012d1d]">18 กลุ่ม</span>
+<span class="text-xs text-gray-500">วิสาหกิจเข้มแข็ง</span>
+</div>
+<div class="bg-white/80 backdrop-blur py-3 px-4 rounded-xl border border-gray-200 shadow-xs">
+<span class="block text-xl font-bold text-[#012d1d]">7 ผลิตภัณฑ์เด่น</span>
+<span class="text-xs text-gray-500">ภูมิปัญญาสืบทอด</span>
+</div>
+<div class="bg-white/80 backdrop-blur py-3 px-4 rounded-xl border border-gray-200 shadow-xs cursor-pointer hover:bg-gray-50 transition" onclick="document.getElementById('stories').scrollIntoView({behavior: 'smooth'})">
+<span class="block text-xl font-bold text-[#012d1d]">7 เรื่องเล่าเด่น</span>
+<span class="text-xs text-gray-500">ครบทั้ง 7 ชุมชน</span>
+</div>
+<div class="col-span-2 sm:col-span-1 bg-white/80 backdrop-blur py-3 px-4 rounded-xl border border-gray-200 shadow-xs">
+<span class="block text-xl font-bold text-[#012d1d]">2,840</span>
+<span class="text-xs text-gray-500">ครัวเรือนในพื้นที่</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 1: 7 VILLAGES SHOWCASE -->
+<section class="py-16 px-6 bg-white" id="villages">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<div class="flex items-center gap-2 text-[#9d4413] text-sm font-semibold mb-1">
+<span class="material-symbols-outlined text-base">cottage</span>
+<span>ทำเนียบ 7 หมู่บ้าน • ประวัติความเป็นมาและผลิตภัณฑ์ภูมิปัญญา</span>
+</div>
+<h2 class="text-3xl font-bold text-[#012d1d]">สำรวจ 7 หมู่บ้านแห่งตำบลห้วยเตย</h2>
+<p class="text-gray-600 text-sm mt-1">คลิกที่การ์ดเพื่อดูประวัติความเป็นมาและผลิตภัณฑ์เด่นฉบับสมบูรณ์</p>
+</div>
+<!-- Filter Buttons matching edit request exactly -->
+<div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0" id="filterNav">
+<button class="f-btn px-3.5 py-1.5 rounded-full bg-[#012d1d] text-white text-xs font-semibold whitespace-nowrap" onclick="filterByCat('all', this)">ทั้งหมด (7 หมู่บ้าน)</button>
+<button class="f-btn px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold whitespace-nowrap" onclick="filterByCat('ไหมน้ำเตย', this)">ไหมน้ำเตย</button>
+<button class="f-btn px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold whitespace-nowrap" onclick="filterByCat('เสื่อทอมือลายโบราณ', this)">เสื่อทอมือลายโบราณ</button>
+<button class="f-btn px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold whitespace-nowrap" onclick="filterByCat('สานตะกร้า', this)">สานตะกร้า</button>
+<button class="f-btn px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold whitespace-nowrap" onclick="filterByCat('ผักปลอดสารพิษ', this)">ผักปลอดสารพิษ</button>
+<button class="f-btn px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold whitespace-nowrap" onclick="filterByCat('ลูกประคบ', this)">ลูกประคบ</button>
+</div>
+</div>
+<!-- 7 Village Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="vGrid">
+<!-- Card 1: ม.1 บ้านห้วยเตย -->
+<div class="v-card bg-[#f9f9fb] rounded-2xl overflow-hidden border border-gray-200 hover:border-[#1b4332] shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col" data-cat="ไหมน้ำเตย" data-id="1" onclick="openVillage(1)">
+<div class="relative h-56 overflow-hidden">
+<img alt="ไหมน้ำเตย บ้านห้วยเตย" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WbC8-SqI8psPysLSZbIwyidSaXI4iDI3S8L-Fz28ukIZEMddqb6jI3fF653h_Gbi2RK6OISFf0o1GtU6qacPR5vULyld99fmwnarAd8oeojIEBe9z_KWgITim9Zu95Lw1iR3wZtmtD2NUTyRs_uwYbCuVeuI-ogYsPra08c_6It4aYmjr2RzFjNN2WxsnQc9EWxlTHuabayprB0VG5XdzlZrdtaQjCFNKaRCzUq84uVjQtjCEDBJUg4Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-[#012d1d] text-xs font-bold shadow-xs">หมู่ที่ 1 • ศูนย์กลางตำบล</span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#9d4413] text-white text-xs font-bold shadow-xs">ไหมน้ำเตย</span>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="text-xs text-gray-300">มรดกหม่อนไหมน้ำเตย</span>
+<h3 class="text-xl font-bold">หมู่ที่ 1 บ้านห้วยเตย</h3>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-xs font-bold text-[#9d4413] uppercase mb-1">เรื่องราวความเป็นมา</div>
+<p class="text-xs text-gray-600 line-clamp-3 mb-3">ชุมชนดั้งเดิมอันเป็นที่มาของชื่อตำบล ก่อตั้งริมลำห้วยธรรมชาติที่อุดมไปด้วยกอเตยป่าหอม บรรพชนสืบทอดภูมิปัญญาการปลูกหม่อนเลี้ยงไหมและรังสรรค์เส้นไหมเอกลักษณ์ "ไหมน้ำเตย"</p>
+<div class="text-xs font-bold text-[#012d1d] uppercase mb-1.5">ผลิตภัณฑ์เด่น &amp; ภูมิปัญญา</div>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded bg-green-100 text-[#012d1d] text-[11px] font-semibold">ไหมน้ำเตย</span>
+</div>
+</div>
+<button class="w-full py-2 px-3 rounded-xl bg-white border border-gray-300 hover:bg-[#012d1d] hover:text-white text-[#012d1d] text-xs font-bold flex items-center justify-between transition">
+<span>ดูข้อมูลเพิ่มเติม (ประวัติ &amp; ผลิตภัณฑ์)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2: ม.2 บ้านห้วยฝาย -->
+<div class="v-card bg-[#f9f9fb] rounded-2xl overflow-hidden border border-gray-200 hover:border-[#1b4332] shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col" data-cat="เสื่อทอมือลายโบราณ" data-id="2" onclick="openVillage(2)">
+<div class="relative h-56 overflow-hidden">
+<img alt="เสื่อทอมือลายโบราณ บ้านห้วยฝาย" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WEgsoW_1NVexFydvBLszJB26SSGSkotZkSbDNTjSijmib5B4J8yynw_9Xh2O7J3LoBQJwmrBOSIu-DbTQWQWu4lLBnBVr3KPKGhQ_nNA3YTfCX3ZVyIsGUN_qYtu--Okpn3g3eZ8NTYGGd0X4NWnRAghyWQ3NyCBKga9RHjYtWojjztKFfPgOENCn-i83diR_hG1otk9M6Rqi6gUvIMD6rhdIo8uLzOWBAx8DjZnUMsnIkDppGIQACbI4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-[#012d1d] text-xs font-bold shadow-xs">หมู่ที่ 2 • เสื่อทอมือ</span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#1b4332] text-white text-xs font-bold shadow-xs">เสื่อทอมือลายโบราณ</span>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="text-xs text-gray-300">สายน้ำฝายชลประทาน</span>
+<h3 class="text-xl font-bold">หมู่ที่ 2 บ้านห้วยฝาย</h3>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-xs font-bold text-[#9d4413] uppercase mb-1">เรื่องราวความเป็นมา</div>
+<p class="text-xs text-gray-600 line-clamp-3 mb-3">ชุมชนก่อตั้งริมฝายกักเก็บน้ำธรรมชาติ ชาวบ้านอาศัยต้นกกริมฝายที่สมบูรณ์มาสร้างสรรค์งานทอเสื่อเนื้อแน่นละเอียด สืบสานเสื่อทอมือลายโบราณที่สืบทอดกันมาหลายชั่วอายุคน</p>
+<div class="text-xs font-bold text-[#012d1d] uppercase mb-1.5">ผลิตภัณฑ์เด่น &amp; ภูมิปัญญา</div>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded bg-yellow-100 text-yellow-900 text-[11px] font-semibold">เสื่อทอมือลายโบราณ</span>
+</div>
+</div>
+<button class="w-full py-2 px-3 rounded-xl bg-white border border-gray-300 hover:bg-[#012d1d] hover:text-white text-[#012d1d] text-xs font-bold flex items-center justify-between transition">
+<span>ดูข้อมูลเพิ่มเติม (ประวัติ &amp; ผลิตภัณฑ์)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3: ม.3 บ้านโสกผาแก้ว -->
+<div class="v-card bg-[#f9f9fb] rounded-2xl overflow-hidden border border-gray-200 hover:border-[#1b4332] shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col" data-cat="สานตะกร้า" data-id="3" onclick="openVillage(3)">
+<div class="relative h-56 overflow-hidden">
+<img alt="สานตะกร้า บ้านโสกผาแก้ว" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VaOzAAGNHVxTRMemqi33bbhkNc9Kitwy9CPYk3pYWxNEf_5TvNN0V6icDgaWNXihz7JMMgc4uBTrTT1XqmyoKBLmmhkGG1Ip2AXspT1hZ03AZGUkcfxw44t0RcfkWMp6IgGMhdZ_xLqtEocubn2QxnbNb95YCRzxe88lUUb2GBaLXwmgzxa1E7GrxNET5FwUvQngwimO48YkeOBKDN12wvJWh8zTYC48S0zb2OyAyIRNCg7VTsYV5i9KM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-[#012d1d] text-xs font-bold shadow-xs">หมู่ที่ 3 • จักสาน</span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#ffdbcc] text-[#9d4413] text-xs font-bold shadow-xs">สานตะกร้า</span>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="text-xs text-gray-300">หน้าผาหินผลึกขาว</span>
+<h3 class="text-xl font-bold">หมู่ที่ 3 บ้านโสกผาแก้ว</h3>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-xs font-bold text-[#9d4413] uppercase mb-1">เรื่องราวความเป็นมา</div>
+<p class="text-xs text-gray-600 line-clamp-3 mb-3">ชื่อบ้านโสกผาแก้วมาจากร่องผาหินผลึกขาว ชุมชนมีป่าไผ่ธรรมชาติและหนองกก ช่างฝีมือส่งต่อศิลปะการจักสานไม้ไผ่ที่ประณีต โดยเฉพาะการสานตะกร้าที่มีความคงทนและสวยงามประณีต</p>
+<div class="text-xs font-bold text-[#012d1d] uppercase mb-1.5">ผลิตภัณฑ์เด่น &amp; ภูมิปัญญา</div>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded bg-green-100 text-[#012d1d] text-[11px] font-semibold">สานตะกร้า</span>
+</div>
+</div>
+<button class="w-full py-2 px-3 rounded-xl bg-white border border-gray-300 hover:bg-[#012d1d] hover:text-white text-[#012d1d] text-xs font-bold flex items-center justify-between transition">
+<span>ดูข้อมูลเพิ่มเติม (ประวัติ &amp; ผลิตภัณฑ์)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 4: ม.4 บ้านสว่าง -->
+<div class="v-card bg-[#f9f9fb] rounded-2xl overflow-hidden border border-gray-200 hover:border-[#1b4332] shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col" data-cat="ผักปลอดสารพิษ" data-id="4" onclick="openVillage(4)">
+<div class="relative h-56 overflow-hidden">
+<img alt="วิสาหกิจผักปลอดสารพิษ บ้านสว่าง" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCefBZiTJ7s9k6EwEvWUr9Y_Xmx6OCjnYiG2IvRaWcmMctdnl_ffAw50mr6l0AqXBzJvgtyQSIytaYYIF7z4ZrAoAdt7z8QsnPGuOjk03jEUkpCafywqdk_18qCXHEcJtqcq0o9VAVsvMnybitYsUlFY1-5JE9n3BsEFX3e1W4b5b3yF9JwmvXdB6nqyTeoYdtavMjQ3RT495izsAV2pXMQvQ6kGeLEXf96kHV0_BAxXDIvCqxII5kd"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-[#012d1d] text-xs font-bold shadow-xs">หมู่ที่ 4 • วิสาหกิจชุมชน</span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-yellow-400 text-yellow-900 text-xs font-bold shadow-xs">ผักปลอดสารพิษ</span>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="text-xs text-gray-300">แสงทองแห่งเกษตรปลอดภัย</span>
+<h3 class="text-xl font-bold">หมู่ที่ 4 บ้านสว่าง</h3>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-xs font-bold text-[#9d4413] uppercase mb-1">เรื่องราวความเป็นมา</div>
+<p class="text-xs text-gray-600 line-clamp-3 mb-3">พื้นที่ราบสูงโปร่งเปิดรับแสงแดดแรกแห่งวัน ชุมชนร่วมแรงพลิกผืนดินสู่แปลงเกษตรอินทรีย์และโรงเรือนผักกางมุ้งมาตรฐานสากล ก่อตั้งวิสาหกิจผักปลอดสารพิษเพื่อสุขภาพ</p>
+<div class="text-xs font-bold text-[#012d1d] uppercase mb-1.5">ผลิตภัณฑ์เด่น &amp; ภูมิปัญญา</div>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded bg-green-100 text-[#012d1d] text-[11px] font-semibold">วิสาหกิจผักปลอดสารพิษ</span>
+</div>
+</div>
+<button class="w-full py-2 px-3 rounded-xl bg-white border border-gray-300 hover:bg-[#012d1d] hover:text-white text-[#012d1d] text-xs font-bold flex items-center justify-between transition">
+<span>ดูข้อมูลเพิ่มเติม (ประวัติ &amp; ผลิตภัณฑ์)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 5: ม.5 บ้านหลุบเลา -->
+<div class="v-card bg-[#f9f9fb] rounded-2xl overflow-hidden border border-gray-200 hover:border-[#1b4332] shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col" data-cat="ลูกประคบ" data-id="5" onclick="openVillage(5)">
+<div class="relative h-56 overflow-hidden">
+<img alt="ลูกประคบ บ้านหลุบเลา" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiJyyQUNqL1edFprPRUz-EY9c0-ciQj_iteS0Th45Ea3wbIYDRHyJc8O0uXZjlHSnu9iRafHgWhv4y-lAcFR0ieJZ_OvLm5R5VxFPPIYMPFPEgxCEpmdGJ5Z8n1GHMLBU5yVT59iK20-wWChqCZiZrE7MVmPEu-82ew5sHFm9mV0mloLa6IWBkdt8mQPJj-SzdXfw5bGqZUoFzAHUFd6vDGHVnvLk5XcNnWnK2JdBxJBHuGBPSbf3v"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-[#012d1d] text-xs font-bold shadow-xs">หมู่ที่ 5 • สมุนไพร</span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#9d4413] text-white text-xs font-bold shadow-xs">ลูกประคบ</span>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="text-xs text-gray-300">หุบแอ่งพืชพรรณสมุนไพร</span>
+<h3 class="text-xl font-bold">หมู่ที่ 5 บ้านหลุบเลา</h3>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-xs font-bold text-[#9d4413] uppercase mb-1">เรื่องราวความเป็นมา</div>
+<p class="text-xs text-gray-600 line-clamp-3 mb-3">พื้นที่ตั้งอยู่ในแอ่งธรรมชาติ ("หลุบ") ชุ่มชื้นด้วยแร่ธาตุที่เหมาะแก่การปลูกพืชสมุนไพร บรรพชนสืบสานศาสตร์การทำลูกประคบสมุนไพรสูตรโบราณคลายกล้ามเนื้ออย่างแท้จริง</p>
+<div class="text-xs font-bold text-[#012d1d] uppercase mb-1.5">ผลิตภัณฑ์เด่น &amp; ภูมิปัญญา</div>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded bg-orange-100 text-[#9d4413] text-[11px] font-semibold">ลูกประคบ</span>
+</div>
+</div>
+<button class="w-full py-2 px-3 rounded-xl bg-white border border-gray-300 hover:bg-[#012d1d] hover:text-white text-[#012d1d] text-xs font-bold flex items-center justify-between transition">
+<span>ดูข้อมูลเพิ่มเติม (ประวัติ &amp; ผลิตภัณฑ์)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 6: ม.6 บ้านซำโอง -->
+<div class="v-card bg-[#f9f9fb] rounded-2xl overflow-hidden border border-gray-200 hover:border-[#1b4332] shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col" data-cat="ผักปลอดสารพิษ" data-id="6" onclick="openVillage(6)">
+<div class="relative h-56 overflow-hidden">
+<img alt="ผักปลอดสารพิษ บ้านซำโอง" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAERj6Z9MSBZTh96BUx9GO8lL_M-k24tZjs8a4p3eQBWaYM7enviTllPUzIaocwekY4hwA-iEHq3bAFMGXztr2mkCfWhj4wJP-X4H5OlJJfvTQrVyPJeMvj0hRc0YgLDH4IZG__ln4kJnnQtyXWDOKChID7PIS1m379MJeZrXlIwuZOykwI9oCcvZ4aQcXnwdGh_WLyIC7AWQbytPJmf9cL8M9pVGn6btGe-rmDx-A17stk_NIlqzVi"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-[#012d1d] text-xs font-bold shadow-xs">หมู่ที่ 6 • เกษตรอินทรีย์</span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#1b4332] text-white text-xs font-bold shadow-xs">ผักปลอดสารพิษ</span>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="text-xs text-gray-300">ตาน้ำซับชุ่มฉ่ำ</span>
+<h3 class="text-xl font-bold">หมู่ที่ 6 บ้านซำโอง</h3>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-xs font-bold text-[#9d4413] uppercase mb-1">เรื่องราวความเป็นมา</div>
+<p class="text-xs text-gray-600 line-clamp-3 mb-3">"ซำโอง" หมายถึงบริเวณตาน้ำซับใต้ดินบริสุทธิ์ ชุมชนร่วมกันใช้น้ำสะอาดสร้างแปลงผักปลอดสารพิษ 100% หล่อเลี้ยงสุขภาพและเศรษฐกิจหมุนเวียนในหมู่บ้าน</p>
+<div class="text-xs font-bold text-[#012d1d] uppercase mb-1.5">ผลิตภัณฑ์เด่น &amp; ภูมิปัญญา</div>
+<div class="flex flex-wrap gap-1.5 mb-4">
+<span class="px-2 py-0.5 rounded bg-green-100 text-[#012d1d] text-[11px] font-semibold">ผักปลอดสารพิษ</span>
+</div>
+</div>
+<button class="w-full py-2 px-3 rounded-xl bg-white border border-gray-300 hover:bg-[#012d1d] hover:text-white text-[#012d1d] text-xs font-bold flex items-center justify-between transition">
+<span>ดูข้อมูลเพิ่มเติม (ประวัติ &amp; ผลิตภัณฑ์)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 7: ม.7 บ้านหนองขาม (Banner Style) -->
+<div class="v-card bg-[#f9f9fb] rounded-2xl overflow-hidden border border-gray-200 hover:border-[#1b4332] shadow-sm hover:shadow-lg transition cursor-pointer md:col-span-2 lg:col-span-3 flex flex-col md:flex-row" data-cat="ลูกประคบ" data-id="7" onclick="openVillage(7)">
+<div class="relative md:w-5/12 h-60 md:h-auto overflow-hidden">
+<img alt="ลูกประคบ บ้านหนองขาม" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X7GRhRoQXFiaPOkAd--ZBJpAoPAGmDxBdjM7WWbtf-DAJf7OGdojB9V-LxBp2igfiVl6qVC4ZqkLyGx0y64RMkul-qdkmpYGV_H8YdfUaSx0Q5iZTp92JlOdbZsVZGLSh409AmaonMj_Nb02jKLNoXvoOa-ir0LJSPLUfL_S3bfXpOT47zTlKKDRlAaQp8PGF4up_5dyaFcUzjDy4qtEK7dtU6MLHiirHocMdKbbj_OccecBf53z4Wrrk"/>
+<div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/80 via-black/30 to-transparent"></div>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 text-[#012d1d] text-xs font-bold shadow-xs">หมู่ที่ 7 • แพทย์แผนไทย</span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-[#ffdbcc] text-[#9d4413] text-xs font-bold shadow-xs">ลูกประคบ</span>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="text-xs text-gray-300">ร่มเงาต้นมะขามใหญ่</span>
+<h3 class="text-2xl font-bold">หมู่ที่ 7 บ้านหนองขาม</h3>
+</div>
+</div>
+<div class="p-6 md:w-7/12 flex flex-col justify-between">
+<div>
+<div class="text-xs font-bold text-[#9d4413] uppercase mb-1">เรื่องราวความเป็นมา</div>
+<p class="text-sm text-gray-600 leading-relaxed mb-4">ชุมชนมีต้นมะขามโบราณริมหนองน้ำใส บรรพบุรุษสั่งสมตำรับสมุนไพรลูกประคบนวดคลายเส้น คัดสรรเหง้าไพลแก่ ขมิ้นอ้อย ผิวมะกรูด ใบมะขาม นึ่งเตาถ่านจนส่งกลิ่นหอมบำบัด พัฒนาสู่ผลิตภัณฑ์ลูกประคบคุณภาพระดับประเทศ</p>
+<div class="text-xs font-bold text-[#012d1d] uppercase mb-2">ผลิตภัณฑ์เด่น &amp; ภูมิปัญญา</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2.5 py-1 rounded bg-orange-100 text-[#9d4413] text-xs font-semibold">ลูกประคบ</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-200">
+<span class="text-xs text-gray-500">กลุ่มวิสาหกิจแพทย์แผนไทย ม.7</span>
+<button class="px-4 py-2 rounded-xl bg-[#012d1d] text-white text-xs font-bold hover:bg-[#1b4332] transition flex items-center gap-1.5">
+<span>ดูข้อมูลเพิ่มเติม (ประวัติ &amp; ผลิตภัณฑ์)</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: LIVING STORIES (COVERING ALL 7 VILLAGES) -->
+<section class="py-16 px-6 bg-[#f3f3f6]" id="stories">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<span class="text-[#9d4413] text-sm font-bold block mb-1">นิตยสารดิจิทัลและคลังเสียงชุมชน (Digital Magazine &amp; Oral Histories)</span>
+<h2 class="text-3xl font-bold text-[#012d1d]">เรื่องเล่า &amp; ภูมิปัญญามีชีวิต (7 เรื่องเล่าชุมชน)</h2>
+<p class="text-gray-600 text-sm mt-1">บทบันทึกจากปราชญ์ชาวบ้านและผลิตภัณฑ์เด่นของทั้ง 7 หมู่บ้านแห่งตำบลห้วยเตย</p>
+</div>
+<button class="text-[#012d1d] font-bold text-sm hover:text-[#9d4413] transition inline-flex items-center gap-1" onclick="showToast('เปิดคลังบทความสมบูรณ์ 7 เรื่องเล่าประจำตำบล', 'auto_stories')">
+<span>อ่านบทความทั้งหมด (7 เรื่อง)</span>
+<span class="material-symbols-outlined text-sm">arrow_outward</span>
+</button>
+</div>
+<!-- Editorial Bento Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Article 1: ม.1 บ้านห้วยเตย -->
+<article class="lg:col-span-7 bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-md hover:shadow-xl transition cursor-pointer flex flex-col group" onclick="openStory('story1')">
+<div class="relative h-72 sm:h-80 overflow-hidden">
+<img alt="ไหมน้ำเตย" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1WbC8-SqI8psPysLSZbIwyidSaXI4iDI3S8L-Fz28ukIZEMddqb6jI3fF653h_Gbi2RK6OISFf0o1GtU6qacPR5vULyld99fmwnarAd8oeojIEBe9z_KWgITim9Zu95Lw1iR3wZtmtD2NUTyRs_uwYbCuVeuI-ogYsPra08c_6It4aYmjr2RzFjNN2WxsnQc9EWxlTHuabayprB0VG5XdzlZrdtaQjCFNKaRCzUq84uVjQtjCEDBJUg4Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+<span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-[#012d1d] text-xs font-bold">เรื่องเด่นประจำสัปดาห์</span>
+<div class="absolute bottom-4 left-4 right-4 text-white">
+<span class="text-xs text-gray-300 block mb-1">ม.1 บ้านห้วยเตย • ไหมน้ำเตย</span>
+<h3 class="text-2xl font-bold leading-snug">เสน่ห์แห่งไหมน้ำเตย: ภูมิปัญญาเส้นไหมกลิ่นอายธรรมชาติแห่งบ้านห้วยเตย</h3>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<p class="text-sm text-gray-600 font-light leading-relaxed mb-4">
+            "ไหมน้ำเตยเกิดจากการผสานวิถีธรรมชาติริมห้วย เส้นไหมที่สาวด้วยมืออย่างพิถีพิถันให้ความเงางาม นุ่มแน่น และคงทน" เจาะลึกกระบวนการผลิตไหมน้ำเตย เอกลักษณ์หนึ่งเดียวที่สืบทอดกันมารุ่นสู่รุ่น
+          </p>
+<div class="flex items-center justify-between pt-4 border-t border-gray-100">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#1b4332]">edit_note</span>
+<span class="text-xs text-gray-500 font-medium">กองบรรณาธิการฮับห้วยเตย</span>
+</div>
+<span class="text-[#012d1d] group-hover:text-[#9d4413] text-xs font-bold inline-flex items-center gap-1 transition">
+<span>อ่านเรื่องเต็ม</span>
+<span class="material-symbols-outlined text-sm">menu_book</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Side Column: ม.2 & ม.3 (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Article 2: ม.2 บ้านห้วยฝาย -->
+<article class="bg-white rounded-2xl p-5 border border-gray-200 hover:border-[#1b4332] shadow-xs hover:shadow-md transition cursor-pointer flex gap-4 group" onclick="openStory('story2')">
+<div class="w-28 h-28 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100">
+<img alt="เสื่อทอมือลายโบราณ" class="w-full h-full object-cover group-hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida/AEtjO1WEgsoW_1NVexFydvBLszJB26SSGSkotZkSbDNTjSijmib5B4J8yynw_9Xh2O7J3LoBQJwmrBOSIu-DbTQWQWu4lLBnBVr3KPKGhQ_nNA3YTfCX3ZVyIsGUN_qYtu--Okpn3g3eZ8NTYGGd0X4NWnRAghyWQ3NyCBKga9RHjYtWojjztKFfPgOENCn-i83diR_hG1otk9M6Rqi6gUvIMD6rhdIo8uLzOWBAx8DjZnUMsnIkDppGIQACbI4"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<span class="text-[11px] font-bold text-[#9d4413] block mb-0.5">ม.2 บ้านห้วยฝาย • เสื่อทอมือลายโบราณ</span>
+<h4 class="text-sm font-bold text-[#012d1d] group-hover:text-[#9d4413] transition line-clamp-2">ความประณีตแห่งเสื่อทอมือลายโบราณ: มรดกหัตถกรรมบ้านห้วยฝาย</h4>
+<p class="text-xs text-gray-500 line-clamp-2 mt-1">สืบสานการคัดสรรต้นกกริมฝายและเทคนิคการทอมือลวดลายโบราณที่สืบทอดกันมากว่าเก้าทศวรรษ</p>
+</div>
+<div class="text-[11px] font-semibold text-[#012d1d] mt-2 group-hover:underline">อ่านต่อ (4 นาที) →</div>
+</div>
+</article>
+<!-- Article 3: ม.3 บ้านโสกผาแก้ว -->
+<article class="bg-white rounded-2xl p-5 border border-gray-200 hover:border-[#1b4332] shadow-xs hover:shadow-md transition cursor-pointer flex gap-4 group" onclick="openStory('story3')">
+<div class="w-28 h-28 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100">
+<img alt="สานตะกร้า" class="w-full h-full object-cover group-hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida/AEtjO1VaOzAAGNHVxTRMemqi33bbhkNc9Kitwy9CPYk3pYWxNEf_5TvNN0V6icDgaWNXihz7JMMgc4uBTrTT1XqmyoKBLmmhkGG1Ip2AXspT1hZ03AZGUkcfxw44t0RcfkWMp6IgGMhdZ_xLqtEocubn2QxnbNb95YCRzxe88lUUb2GBaLXwmgzxa1E7GrxNET5FwUvQngwimO48YkeOBKDN12wvJWh8zTYC48S0zb2OyAyIRNCg7VTsYV5i9KM"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<span class="text-[11px] font-bold text-[#9d4413] block mb-0.5">ม.3 บ้านโสกผาแก้ว • สานตะกร้า</span>
+<h4 class="text-sm font-bold text-[#012d1d] group-hover:text-[#9d4413] transition line-clamp-2">ศิลปะสานตะกร้าไม้ไผ่: คุณค่าที่ไม่มีวันเลือนหาย ณ บ้านโสกผาแก้ว</h4>
+<p class="text-xs text-gray-500 line-clamp-2 mt-1">เหลาตอกด้วยความตั้งใจ สานตะกร้าด้วยความประณีต แข็งแรง ทนทาน และตอบโจทย์ชีวิตประจำวัน</p>
+</div>
+<div class="text-[11px] font-semibold text-[#012d1d] mt-2 group-hover:underline">อ่านต่อ (5 นาที) →</div>
+</div>
+</article>
+</div>
+<!-- Bottom Row Stories: ม.4, ม.5, ม.6, ม.7 -->
+<div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
+<!-- Article 4: ม.4 บ้านสว่าง -->
+<article class="bg-white rounded-2xl p-5 border border-gray-200 hover:border-[#1b4332] shadow-xs hover:shadow-md transition cursor-pointer flex flex-col justify-between group" onclick="openStory('story4')">
+<div>
+<div class="h-40 rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="วิสาหกิจผักปลอดสารพิษ" class="w-full h-full object-cover group-hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCefBZiTJ7s9k6EwEvWUr9Y_Xmx6OCjnYiG2IvRaWcmMctdnl_ffAw50mr6l0AqXBzJvgtyQSIytaYYIF7z4ZrAoAdt7z8QsnPGuOjk03jEUkpCafywqdk_18qCXHEcJtqcq0o9VAVsvMnybitYsUlFY1-5JE9n3BsEFX3e1W4b5b3yF9JwmvXdB6nqyTeoYdtavMjQ3RT495izsAV2pXMQvQ6kGeLEXf96kHV0_BAxXDIvCqxII5kd"/>
+</div>
+<span class="text-[11px] font-bold text-[#9d4413] block mb-0.5">ม.4 บ้านสว่าง • วิสาหกิจผักปลอดสารพิษ</span>
+<h4 class="text-sm font-bold text-[#012d1d] group-hover:text-[#9d4413] transition line-clamp-2 mb-1.5">วิสาหกิจผักปลอดสารพิษ: พลังชุมชนสีเขียวแห่งบ้านสว่าง</h4>
+<p class="text-xs text-gray-500 line-clamp-2">ร่วมแรงเปลี่ยนผืนดินสู่โรงเรือนผักกางมุ้งอินทรีย์ สร้างความมั่นคงทางอาหารและสุขภาพที่ดี</p>
+</div>
+<div class="pt-3 border-t border-gray-100 text-[11px] font-semibold text-[#012d1d] group-hover:underline mt-3">อ่านต่อ (4 นาที) →</div>
+</article>
+<!-- Article 5: ม.5 บ้านหลุบเลา -->
+<article class="bg-white rounded-2xl p-5 border border-gray-200 hover:border-[#1b4332] shadow-xs hover:shadow-md transition cursor-pointer flex flex-col justify-between group" onclick="openStory('story5')">
+<div>
+<div class="h-40 rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="ลูกประคบ บ้านหลุบเลา" class="w-full h-full object-cover group-hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiJyyQUNqL1edFprPRUz-EY9c0-ciQj_iteS0Th45Ea3wbIYDRHyJc8O0uXZjlHSnu9iRafHgWhv4y-lAcFR0ieJZ_OvLm5R5VxFPPIYMPFPEgxCEpmdGJ5Z8n1GHMLBU5yVT59iK20-wWChqCZiZrE7MVmPEu-82ew5sHFm9mV0mloLa6IWBkdt8mQPJj-SzdXfw5bGqZUoFzAHUFd6vDGHVnvLk5XcNnWnK2JdBxJBHuGBPSbf3v"/>
+</div>
+<span class="text-[11px] font-bold text-[#9d4413] block mb-0.5">ม.5 บ้านหลุบเลา • ลูกประคบ</span>
+<h4 class="text-sm font-bold text-[#012d1d] group-hover:text-[#9d4413] transition line-clamp-2 mb-1.5">ศาสตร์แห่งลูกประคบสมุนไพร: ตำรับผ่อนคลายกล้ามเนื้อบ้านหลุบเลา</h4>
+<p class="text-xs text-gray-500 line-clamp-2">คัดสรรเหง้าไพลแก่จัดและสมุนไพรในหุบแอ่งธรรมชาติ ผสานเป็นลูกประคบสูตรเข้มข้น</p>
+</div>
+<div class="pt-3 border-t border-gray-100 text-[11px] font-semibold text-[#012d1d] group-hover:underline mt-3">อ่านต่อ (5 นาที) →</div>
+</article>
+<!-- Article 6: ม.6 บ้านซำโอง -->
+<article class="bg-white rounded-2xl p-5 border border-gray-200 hover:border-[#1b4332] shadow-xs hover:shadow-md transition cursor-pointer flex flex-col justify-between group" onclick="openStory('story6')">
+<div>
+<div class="h-40 rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="ผักปลอดสารพิษ บ้านซำโอง" class="w-full h-full object-cover group-hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAERj6Z9MSBZTh96BUx9GO8lL_M-k24tZjs8a4p3eQBWaYM7enviTllPUzIaocwekY4hwA-iEHq3bAFMGXztr2mkCfWhj4wJP-X4H5OlJJfvTQrVyPJeMvj0hRc0YgLDH4IZG__ln4kJnnQtyXWDOKChID7PIS1m379MJeZrXlIwuZOykwI9oCcvZ4aQcXnwdGh_WLyIC7AWQbytPJmf9cL8M9pVGn6btGe-rmDx-A17stk_NIlqzVi"/>
+</div>
+<span class="text-[11px] font-bold text-[#9d4413] block mb-0.5">ม.6 บ้านซำโอง • ผักปลอดสารพิษ</span>
+<h4 class="text-sm font-bold text-[#012d1d] group-hover:text-[#9d4413] transition line-clamp-2 mb-1.5">ผักปลอดสารพิษจากตาน้ำซับ: วิถีเกษตรอินทรีย์บ้านซำโอง</h4>
+<p class="text-xs text-gray-500 line-clamp-2">การบริหารจัดการน้ำซับบริสุทธิ์เพื่อหล่อเลี้ยงแปลงผักปลอดสารพิษ สู่ความยั่งยืนของชุมชน</p>
+</div>
+<div class="pt-3 border-t border-gray-100 text-[11px] font-semibold text-[#012d1d] group-hover:underline mt-3">อ่านต่อ (4 นาที) →</div>
+</article>
+<!-- Article 7: ม.7 บ้านหนองขาม -->
+<article class="bg-white rounded-2xl p-5 border border-gray-200 hover:border-[#1b4332] shadow-xs hover:shadow-md transition cursor-pointer flex flex-col justify-between group" onclick="openStory('story7')">
+<div>
+<div class="h-40 rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="ลูกประคบ บ้านหนองขาม" class="w-full h-full object-cover group-hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida/AEtjO1X7GRhRoQXFiaPOkAd--ZBJpAoPAGmDxBdjM7WWbtf-DAJf7OGdojB9V-LxBp2igfiVl6qVC4ZqkLyGx0y64RMkul-qdkmpYGV_H8YdfUaSx0Q5iZTp92JlOdbZsVZGLSh409AmaonMj_Nb02jKLNoXvoOa-ir0LJSPLUfL_S3bfXpOT47zTlKKDRlAaQp8PGF4up_5dyaFcUzjDy4qtEK7dtU6MLHiirHocMdKbbj_OccecBf53z4Wrrk"/>
+</div>
+<span class="text-[11px] font-bold text-[#9d4413] block mb-0.5">ม.7 บ้านหนองขาม • ลูกประคบ</span>
+<h4 class="text-sm font-bold text-[#012d1d] group-hover:text-[#9d4413] transition line-clamp-2 mb-1.5">ลูกประคบเตาฟืนโบราณ: ศาสตร์คลายเส้นแห่งบ้านหนองขาม</h4>
+<p class="text-xs text-gray-500 line-clamp-2">สืบทอดตำรับสมุนไพรลูกประคบนวดคลายกล้ามเนื้อ ห่อด้วยผ้าฝ้าย นึ่งเตาถ่านให้ความร้อนลึก</p>
+</div>
+<div class="pt-3 border-t border-gray-100 text-[11px] font-semibold text-[#012d1d] group-hover:underline mt-3">อ่านต่อ (6 นาที) →</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: CITIZEN & CIVIC CTA -->
+<section class="py-14 px-6 bg-[#1b4332] text-white" id="contact">
+<div class="max-w-7xl mx-auto rounded-3xl bg-[#012d1d] p-8 md:p-12 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
+<div class="max-w-2xl">
+<span class="text-[#ffdbcc] text-sm font-bold block mb-2">อบต. ห้วยเตย ยินดีต้อนรับนักเดินทางและผู้ศึกษาดูงาน</span>
+<h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">
+        ต้องการประสานงานศึกษาดูงาน หรือสั่งซื้อสินค้าชุมชนจำนวนมาก?
+      </h2>
+<p class="text-gray-300 text-sm font-light leading-relaxed">
+        ศูนย์ประสานงานวิสาหกิจชุมชนยินดีอำนวยความสะดวกในการจัดโปรแกรมทัศนศึกษาชุมชน จัดหาของที่ระลึกสำหรับองค์กร และบริการข้อมูลครบวงจร 7 หมู่บ้านแห่งตำบลห้วยเตย
+      </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+<button class="px-6 py-3.5 rounded-xl bg-[#9d4413] hover:bg-[#7e340d] text-white font-bold text-sm transition flex items-center justify-center gap-2 shadow-md" onclick="handlePhoneCall()">
+<span class="material-symbols-outlined text-base">call</span>
+<span>โทร 043-123-456</span>
+</button>
+<button class="px-6 py-3.5 rounded-xl bg-white hover:bg-gray-100 text-[#012d1d] font-bold text-sm transition flex items-center justify-center gap-2" onclick="openContactModal()">
+<span class="material-symbols-outlined text-base">mail</span>
+<span>ส่งข้อความถึง อบต.</span>
+</button>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="bg-[#012d1d] text-white py-14 px-6 border-t border-[#1b4332]">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-white/10">
+<div class="lg:col-span-2">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-9 h-9 rounded-xl bg-[#9d4413] text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">local_florist</span>
+</div>
+<div><div class="font-bold text-base">Creative heart of Huaitoei</div><div class="text-xs text-[#ffdbcc]">Living Heritage &amp; Community Hub</div></div>
+</div>
+<p class="text-xs text-gray-300 leading-relaxed max-w-sm mb-4">
+          ศูนย์กลางข้อมูลดิจิทัลเพื่อการอนุรักษ์ ส่งเสริมภูมิปัญญาท้องถิ่น เชื่อมต่อเศรษฐกิจฐานราก และเปิดโลกการท่องเที่ยวเชิงวัฒนธรรม 7 หมู่บ้านอย่างยั่งยืน
+        </p>
+<div class="text-xs text-gray-400 space-y-1">
+<p>ที่ทำการองค์การบริหารส่วนตำบลห้วยเตย อ.กุดรัง จ.มหาสารคาม</p>
+<p>โทรศัพท์: 043-123-456 | อีเมล: contact@huaitoei.go.th</p>
+</div>
+</div>
+<div>
+<h4 class="text-[#ffdbcc] text-sm font-bold mb-3">7 หมู่บ้าน</h4>
+<ul class="space-y-2 text-xs text-gray-300">
+<li><button class="hover:text-white transition" onclick="openVillage(1)">ม.1 บ้านห้วยเตย (ไหมน้ำเตย)</button></li>
+<li><button class="hover:text-white transition" onclick="openVillage(2)">ม.2 บ้านห้วยฝาย (เสื่อทอมือลายโบราณ)</button></li>
+<li><button class="hover:text-white transition" onclick="openVillage(3)">ม.3 บ้านโสกผาแก้ว (สานตะกร้า)</button></li>
+<li><button class="hover:text-white transition" onclick="openVillage(4)">ม.4 บ้านสว่าง (วิสาหกิจผักปลอดสารพิษ)</button></li>
+<li><button class="hover:text-white transition" onclick="openVillage(5)">ม.5 บ้านหลุบเลา (ลูกประคบ)</button></li>
+<li><button class="hover:text-white transition" onclick="openVillage(6)">ม.6 บ้านซำโอง (ผักปลอดสารพิษ)</button></li>
+<li><button class="hover:text-white transition" onclick="openVillage(7)">ม.7 บ้านหนองขาม (ลูกประคบ)</button></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#ffdbcc] text-sm font-bold mb-3">คลังข้อมูลและวิสาหกิจ</h4>
+<ul class="space-y-2 text-xs text-gray-300">
+<li><a class="hover:text-white transition" href="#villages">ประวัติศาสตร์ 7 ชุมชน</a></li>
+<li><a class="hover:text-white transition" href="#villages">ทำเนียบผลิตภัณฑ์เด่น</a></li>
+<li><a class="hover:text-white transition" href="#stories">เรื่องเล่าปราชญ์ชุมชน (7 เรื่อง)</a></li>
+<li><button class="hover:text-white transition" onclick="openContactModal()">ติดต่อศึกษาดูงาน</button></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#ffdbcc] text-sm font-bold mb-3">บริการประชาชน</h4>
+<ul class="space-y-2 text-xs text-gray-300">
+<li><button class="text-[#ffdbcc] underline underline-offset-4 hover:text-white transition" onclick="openContactModal()">ส่งเรื่องถึง อบต. ห้วยเตย</button></li>
+<li><button class="hover:text-white transition" onclick="handlePhoneCall()">ศูนย์ข้อมูลการท่องเที่ยว</button></li>
+<li><a class="hover:text-white transition" href="#stories">เสียงสะท้อนปราชญ์ชาวบ้าน</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 gap-3">
+<div>© 2567 ศูนย์ข้อมูลมรดกและภูมิปัญญาชุมชนตำบลห้วยเตย. สงวนลิขสิทธิ์ทุกประการ.</div>
+<div class="flex items-center gap-2 text-emerald-400">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span>ระบบโต้ตอบครบทุกฟังก์ชัน (Interactive v2.5)</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- 1. VILLAGE DETAIL MODAL -->
+<div class="fixed inset-0 z-50 hidden transition-opacity duration-300" id="vModal">
+<div class="fixed inset-0 bg-black/70 backdrop-blur-xs" onclick="closeVillage()"></div>
+<div class="fixed inset-0 overflow-hidden flex justify-end">
+<div class="w-full max-w-xl bg-white h-full flex flex-col overflow-y-auto relative z-10 custom-scroll shadow-2xl">
+<!-- Modal Header -->
+<div class="sticky top-0 bg-white/95 backdrop-blur px-6 py-4 border-b border-gray-200 flex items-center justify-between z-20">
+<div class="text-xs font-bold text-gray-500 uppercase tracking-wider" id="mTag">ข้อมูลประวัติ &amp; ภูมิปัญญา</div>
+<button class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition" onclick="closeVillage()">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<!-- Modal Image Cover -->
+<div class="relative h-64 w-full overflow-hidden flex-shrink-0 bg-gray-900">
+<img alt="ภาพหมู่บ้าน" class="w-full h-full object-cover" id="mImg" src=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+<div class="absolute bottom-4 left-6 right-6 text-white">
+<h2 class="text-2xl font-bold" id="mTitle">ชื่อหมู่บ้าน</h2>
+<p class="text-xs text-gray-300 mt-1" id="mGeo">ระยะทาง</p>
+</div>
+</div>
+<!-- Modal Body -->
+<div class="p-6 space-y-6 flex-1">
+<div class="grid grid-cols-3 gap-2 p-3 rounded-xl bg-gray-50 border border-gray-200 text-center">
+<div>
+<span class="block text-[11px] text-gray-400">ก่อตั้ง</span>
+<span class="text-sm font-bold text-[#012d1d]" id="mFounded">-</span>
+</div>
+<div>
+<span class="block text-[11px] text-gray-400">ครัวเรือน</span>
+<span class="text-sm font-bold text-[#012d1d]" id="mHouseholds">-</span>
+</div>
+<div>
+<span class="block text-[11px] text-gray-400">กลุ่มอาชีพ</span>
+<span class="text-sm font-bold text-[#012d1d]" id="mGroups">-</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-1.5 text-sm font-bold text-[#9d4413] mb-2">
+<span class="material-symbols-outlined text-base">history_edu</span>
+<span>ประวัติความเป็นมา</span>
+</div>
+<p class="text-xs text-gray-700 leading-relaxed whitespace-pre-line" id="mHistory"></p>
+</div>
+<div class="pt-4 border-t border-gray-100">
+<div class="flex items-center gap-1.5 text-sm font-bold text-[#012d1d] mb-2">
+<span class="material-symbols-outlined text-base">workspace_premium</span>
+<span>ผลิตภัณฑ์เด่น &amp; ภูมิปัญญาสืบทอด</span>
+</div>
+<div class="space-y-2.5" id="mProducts"></div>
+</div>
+<div class="p-4 rounded-xl bg-green-50 border border-green-200 text-xs text-[#012d1d]">
+<div class="font-bold mb-1" id="mContactLead">-</div>
+<div class="text-gray-600" id="mContactDetails">-</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="sticky bottom-0 bg-white px-6 py-4 border-t border-gray-200 flex gap-3">
+<button class="px-4 py-2 rounded-xl border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-gray-50" onclick="closeVillage()">ปิด</button>
+<button class="flex-1 py-2 px-4 rounded-xl bg-[#012d1d] hover:bg-[#1b4332] text-white text-xs font-bold transition" onclick="closeVillage(); openContactModal();">ติดต่อประสานงานชุมชนนี้</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. STORY READER MODAL -->
+<div class="fixed inset-0 z-50 hidden transition-opacity duration-300" id="sModal">
+<div class="fixed inset-0 bg-black/70 backdrop-blur-xs" onclick="closeStory()"></div>
+<div class="fixed inset-0 overflow-y-auto flex items-center justify-center p-4 z-10 custom-scroll">
+<div class="bg-white rounded-3xl max-w-2xl w-full max-h-[88vh] overflow-y-auto shadow-2xl flex flex-col custom-scroll relative">
+<div class="sticky top-0 bg-white/95 backdrop-blur px-6 py-3.5 border-b border-gray-200 flex items-center justify-between z-20">
+<span class="text-xs font-bold text-[#9d4413] flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">auto_stories</span>
+<span id="sMeta">เรื่องเล่ามีชีวิต</span>
+</span>
+<button class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 transition" onclick="closeStory()">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<div class="relative h-60 w-full overflow-hidden flex-shrink-0 bg-gray-900">
+<img alt="Story Cover" class="w-full h-full object-cover" id="sImg" src=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+<div class="absolute bottom-4 left-6 right-6 text-white">
+<span class="px-2.5 py-0.5 rounded-full bg-[#9d4413] text-white text-[11px] font-semibold mb-1 inline-block" id="sCategory">เรื่องเด่น</span>
+<h3 class="text-xl font-bold" id="sTitle">ชื่อบทความ</h3>
+</div>
+</div>
+<div class="p-6 md:p-8 space-y-4">
+<div class="p-3.5 rounded-xl bg-orange-50 border-l-4 border-[#9d4413] text-sm italic text-gray-800" id="sQuote"></div>
+<div class="text-xs md:text-sm text-gray-700 leading-relaxed whitespace-pre-line space-y-3" id="sText"></div>
+</div>
+<div class="sticky bottom-0 bg-white px-6 py-3 border-t border-gray-200 flex justify-end gap-3">
+<button class="px-5 py-2 rounded-xl bg-[#012d1d] hover:bg-[#1b4332] text-white text-xs font-bold transition" onclick="closeStory()">ปิดหน้าต่าง</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. CONTACT FORM MODAL -->
+<div class="fixed inset-0 z-50 hidden transition-opacity duration-300" id="cModal">
+<div class="fixed inset-0 bg-black/70 backdrop-blur-xs" onclick="closeContactModal()"></div>
+<div class="fixed inset-0 overflow-y-auto flex items-center justify-center p-4 z-10 custom-scroll">
+<div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+<div class="flex items-center justify-between pb-3 border-b border-gray-200 mb-4">
+<div>
+<h3 class="text-base font-bold text-[#012d1d]">ส่งข้อความถึง อบต. ห้วยเตย</h3>
+<p class="text-xs text-gray-500">ติดต่อศึกษาดูงาน / สั่งซื้อผลิตภัณฑ์ชุมชน</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600" onclick="closeContactModal()">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<form class="space-y-3" onsubmit="submitContact(event)">
+<div>
+<label class="block text-xs font-bold text-gray-700 mb-1">ชื่อ-นามสกุล / หน่วยงาน *</label>
+<input class="w-full rounded-xl border-gray-300 text-xs px-3 py-2 focus:ring-[#012d1d] focus:border-[#012d1d]" id="cName" placeholder="เช่น นายสมศักดิ์ หรือสถาบันการเรียนรู้" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-700 mb-1">เบอร์โทรศัพท์ติดต่อ *</label>
+<input class="w-full rounded-xl border-gray-300 text-xs px-3 py-2 focus:ring-[#012d1d] focus:border-[#012d1d]" id="cPhone" placeholder="08x-xxx-xxxx" required="" type="tel"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-700 mb-1">วัตถุประสงค์ *</label>
+<select class="w-full rounded-xl border-gray-300 text-xs px-3 py-2 focus:ring-[#012d1d] focus:border-[#012d1d]" id="cTopic">
+<option value="visit">ขอศึกษาดูงานทั้ง 7 หมู่บ้าน</option>
+<option value="buy">สั่งซื้อผลิตภัณฑ์ชุมชนจำนวนมาก</option>
+<option value="info">สอบถามข้อมูลภูมิปัญญา</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-gray-700 mb-1">ข้อความรายละเอียด *</label>
+<textarea class="w-full rounded-xl border-gray-300 text-xs px-3 py-2 focus:ring-[#012d1d] focus:border-[#012d1d]" id="cMsg" placeholder="ระบุจำนวนคน วันที่ต้องการดูงาน หรือสินค้าที่สนใจ..." required="" rows="3"></textarea>
+</div>
+<div class="pt-2 flex justify-end gap-2">
+<button class="px-4 py-2 rounded-xl border border-gray-300 text-xs font-semibold text-gray-600" onclick="closeContactModal()" type="button">ยกเลิก</button>
+<button class="px-5 py-2 rounded-xl bg-[#9d4413] hover:bg-[#7e340d] text-white text-xs font-bold transition" type="submit">ส่งข้อความ</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- DATA & INTERACTIVE SCRIPT -->
+<script>
+// 1. Data layer: embedded seed + localStorage (no server needed)
+const SEED = {"villages":[{"id":1,"moo":1,"name":"บ้านห้วยเตย","tag":"หมู่ที่ 1 • ศูนย์กลางตำบล","category":"ไหมน้ำเตย","geo":"ระยะทาง 0.2 กม. จากที่ทำการ อบต.","img":"https://lh3.googleusercontent.com/aida/AEtjO1WbC8-SqI8psPysLSZbIwyidSaXI4iDI3S8L-Fz28ukIZEMddqb6jI3fF653h_Gbi2RK6OISFf0o1GtU6qacPR5vULyld99fmwnarAd8oeojIEBe9z_KWgITim9Zu95Lw1iR3wZtmtD2NUTyRs_uwYbCuVeuI-ogYsPra08c_6It4aYmjr2RzFjNN2WxsnQc9EWxlTHuabayprB0VG5XdzlZrdtaQjCFNKaRCzUq84uVjQtjCEDBJUg4Q","founded":"กว่า 120 ปี","households":430,"groups":3,"history":"บ้านห้วยเตยเป็นหมู่บ้านเก่าแก่ที่สุดและเป็นศูนย์กลางการปกครองของตำบล ก่อตั้งริมลำห้วยธรรมชาติอันอุดมสมบูรณ์ที่มีต้นเตยหอมป่าขึ้นหนาแน่น บรรพบุรุษรุ่นแรกได้สืบทอดภูมิปัญญาการปลูกหม่อน เลี้ยงไหม สาวไหมด้วยมือ รังสรรค์เป็น 'ไหมน้ำเตย' อันเป็นเอกลักษณ์หนึ่งเดียวของตำบลห้วยเตย","contact_lead":"แม่ครูสมร บุญทา (ประธานกลุ่มไหมน้ำเตยบ้านห้วยเตย)","contact_details":"โทร 089-123-4567 | ม.1 บ้านห้วยเตย"},{"id":2,"moo":2,"name":"บ้านห้วยฝาย","tag":"หมู่ที่ 2 • หัตถกรรมเสื่อ","category":"เสื่อทอมือลายโบราณ","geo":"ระยะทาง 1.8 กม. จากที่ทำการ อบต.","img":"https://lh3.googleusercontent.com/aida/AEtjO1WEgsoW_1NVexFydvBLszJB26SSGSkotZkSbDNTjSijmib5B4J8yynw_9Xh2O7J3LoBQJwmrBOSIu-DbTQWQWu4lLBnBVr3KPKGhQ_nNA3YTfCX3ZVyIsGUN_qYtu--Okpn3g3eZ8NTYGGd0X4NWnRAghyWQ3NyCBKga9RHjYtWojjztKFfPgOENCn-i83diR_hG1otk9M6Rqi6gUvIMD6rhdIo8uLzOWBAx8DjZnUMsnIkDppGIQACbI4","founded":"ราว 90 ปี","households":380,"groups":2,"history":"บ้านห้วยฝายตั้งอยู่ริมฝายน้ำธรรมชาติที่มีน้ำหล่อเลี้ยงตลอดปี ทำให้มีต้นกกขึ้นเจริญงอกงามอย่างอุดมสมบูรณ์ ชาวบ้านจึงได้สืบสานการนำต้นกกมาตากแห้ง ย้อมสีธรรมชาติ และทอเป็น 'เสื่อทอมือลายโบราณ' เนื้อแน่น ประณีต และคงทน","contact_lead":"แม่สมหมาย เจริญศิลป์ (ประธานกลุ่มเสื่อทอมือลายโบราณ ม.2)","contact_details":"โทร 087-111-2233 | ม.2 บ้านห้วยฝาย"},{"id":3,"moo":3,"name":"บ้านโสกผาแก้ว","tag":"หมู่ที่ 3 • จักสาน","category":"สานตะกร้า","geo":"ระยะทาง 2.5 กม. จากที่ทำการ อบต.","img":"https://lh3.googleusercontent.com/aida/AEtjO1VaOzAAGNHVxTRMemqi33bbhkNc9Kitwy9CPYk3pYWxNEf_5TvNN0V6icDgaWNXihz7JMMgc4uBTrTT1XqmyoKBLmmhkGG1Ip2AXspT1hZ03AZGUkcfxw44t0RcfkWMp6IgGMhdZ_xLqtEocubn2QxnbNb95YCRzxe88lUUb2GBaLXwmgzxa1E7GrxNET5FwUvQngwimO48YkeOBKDN12wvJWh8zTYC48S0zb2OyAyIRNCg7VTsYV5i9KM","founded":"ราว 85 ปี","households":310,"groups":3,"history":"บ้านโสกผาแก้วมีป่าไผ่ธรรมชาติที่สมบูรณ์ ช่างฝีมือในหมู่บ้านได้รับการถ่ายทอดทักษะการเหลาตอกและการจักสานอย่างช่ำชอง มุ่งเน้นการ 'สานตะกร้า' ที่แข็งแรง ทนทาน และมีลวดลายเป็นเอกลักษณ์ประจำถิ่น","contact_lead":"พ่อบุญมี สาลีวรรณ (ช่างจักสานอาวุโส ม.3)","contact_details":"โทร 086-222-3344 | ม.3 บ้านโสกผาแก้ว"},{"id":4,"moo":4,"name":"บ้านสว่าง","tag":"หมู่ที่ 4 • ผักปลอดสารพิษ","category":"ผักปลอดสารพิษ","geo":"ระยะทาง 3.2 กม. จากที่ทำการ อบต.","img":"https://lh3.googleusercontent.com/aida-public/AB6AXuCefBZiTJ7s9k6EwEvWUr9Y_Xmx6OCjnYiG2IvRaWcmMctdnl_ffAw50mr6l0AqXBzJvgtyQSIytaYYIF7z4ZrAoAdt7z8QsnPGuOjk03jEUkpCafywqdk_18qCXHEcJtqcq0o9VAVsvMnybitYsUlFY1-5JE9n3BsEFX3e1W4b5b3yF9JwmvXdB6nqyTeoYdtavMjQ3RT495izsAV2pXMQvQ6kGeLEXf96kHV0_BAxXDIvCqxII5kd","founded":"ราว 75 ปี","households":295,"groups":2,"history":"ตั้งอยู่บนที่ราบสูงโปร่งเปิดรับแสงแดดบริสุทธิ์ ชาวบ้านร่วมแรงร่วมใจก่อตั้ง 'วิสาหกิจผักปลอดสารพิษ' พลิกผืนดินสู่โรงเรือนกางมุ้ง ปลูกผักอินทรีย์ปลอดภัย ปราศจากสารเคมี สร้างสุขภาพและรายได้ยั่งยืน","contact_lead":"นายวิชัย สว่างวงศ์ (ประธานวิสาหกิจผักปลอดสารพิษ ม.4)","contact_details":"โทร 084-555-6677 | ม.4 บ้านสว่าง"},{"id":5,"moo":5,"name":"บ้านหลุบเลา","tag":"หมู่ที่ 5 • สมุนไพร","category":"ลูกประคบ","geo":"ระยะทาง 4.0 กม. จากที่ทำการ อบต.","img":"https://lh3.googleusercontent.com/aida-public/AB6AXuBiJyyQUNqL1edFprPRUz-EY9c0-ciQj_iteS0Th45Ea3wbIYDRHyJc8O0uXZjlHSnu9iRafHgWhv4y-lAcFR0ieJZ_OvLm5R5VxFPPIYMPFPEgxCEpmdGJ5Z8n1GHMLBU5yVT59iK20-wWChqCZiZrE7MVmPEu-82ew5sHFm9mV0mloLa6IWBkdt8mQPJj-SzdXfw5bGqZUoFzAHUFd6vDGHVnvLk5XcNnWnK2JdBxJBHuGBPSbf3v","founded":"ราว 70 ปี","households":320,"groups":2,"history":"พื้นที่ตั้งอยู่ในแอ่งธรรมชาติ ('หลุบ') ที่อุดมด้วยแร่ธาตุ เหมาะแก่การปลูกพืชสมุนไพรพื้นบ้าน ชุมชนสืบสานศาสตร์การทำ 'ลูกประคบ' สมุนไพรสดสูตรโบราณ เพื่อใช้บรรเทาอาการปวดเมื่อยและคลายกล้ามเนื้อ","contact_lead":"ป้าประนอม สุขสำราญ (หัวหน้ากลุ่มทำลูกประคบ ม.5)","contact_details":"โทร 085-666-7788 | ม.5 บ้านหลุบเลา"},{"id":6,"moo":6,"name":"บ้านซำโอง","tag":"หมู่ที่ 6 • ผักปลอดสารพิษ","category":"ผักปลอดสารพิษ","geo":"ระยะทาง 4.6 กม. จากที่ทำการ อบต.","img":"https://lh3.googleusercontent.com/aida-public/AB6AXuAERj6Z9MSBZTh96BUx9GO8lL_M-k24tZjs8a4p3eQBWaYM7enviTllPUzIaocwekY4hwA-iEHq3bAFMGXztr2mkCfWhj4wJP-X4H5OlJJfvTQrVyPJeMvj0hRc0YgLDH4IZG__ln4kJnnQtyXWDOKChID7PIS1m379MJeZrXlIwuZOykwI9oCcvZ4aQcXnwdGh_WLyIC7AWQbytPJmf9cL8M9pVGn6btGe-rmDx-A17stk_NIlqzVi","founded":"ราว 65 ปี","households":340,"groups":3,"history":"คำว่า 'ซำโอง' มาจากตาน้ำซับใต้ดินบริสุทธิ์ที่ไหลรินตลอดปี ชุมชนใช้น้ำสะอาดนี้ทำการเกษตรอินทรีย์ ผลิต 'ผักปลอดสารพิษ' คุณภาพเยี่ยม ปราศจากสารเคมีตกค้างอย่างแท้จริง","contact_lead":"นายอำนาจ เกษตรศิริ (ประธานเครือข่ายผักปลอดสารพิษ ม.6)","contact_details":"โทร 083-444-5566 | ม.6 บ้านซำโอง"},{"id":7,"moo":7,"name":"บ้านหนองขาม","tag":"หมู่ที่ 7 • สมุนไพร","category":"ลูกประคบ","geo":"ระยะทาง 5.2 กม. จากที่ทำการ อบต.","img":"https://lh3.googleusercontent.com/aida/AEtjO1X7GRhRoQXFiaPOkAd--ZBJpAoPAGmDxBdjM7WWbtf-DAJf7OGdojB9V-LxBp2igfiVl6qVC4ZqkLyGx0y64RMkul-qdkmpYGV_H8YdfUaSx0Q5iZTp92JlOdbZsVZGLSh409AmaonMj_Nb02jKLNoXvoOa-ir0LJSPLUfL_S3bfXpOT47zTlKKDRlAaQp8PGF4up_5dyaFcUzjDy4qtEK7dtU6MLHiirHocMdKbbj_OccecBf53z4Wrrk","founded":"ราว 60 ปี","households":260,"groups":2,"history":"ชุมชนริมหนองน้ำที่มีต้นมะขามใหญ่แผ่ร่มเงา บรรพบุรุษได้รวบรวมตำรับ 'ลูกประคบ' สมุนไพรเตาถ่าน นำสมุนไพรพื้นถิ่นมาห่อผ้าฝ้าย นึ่งไอความร้อนบำบัดฟื้นฟูสุขภาพร่างกายอย่างลงตัว","contact_lead":"แม่บัวพา ใจมั่น (ประธานกลุ่มผลิตลูกประคบ ม.7)","contact_details":"โทร 088-777-8899 | ม.7 บ้านหนองขาม"}],"products":[{"village_id":1,"name":"ไหมน้ำเตย","description":"เส้นไหมธรรมชาติสาวมือคุณภาพสูง นุ่ม ละเอียด เงางาม มีเอกลักษณ์เฉพาะถิ่นบ้านห้วยเตย","sort_order":0,"id":1},{"village_id":2,"name":"เสื่อทอมือลายโบราณ","description":"เสื่อกกทอมือลายโบราณ เส้นกกแน่นละเอียด สัมผัสเย็นสบาย ภูมิปัญญาดั้งเดิมที่สืบทอดมายาวนาน","sort_order":0,"id":2},{"village_id":3,"name":"สานตะกร้า","description":"งานจักสานตะกร้าจากไม้ไผ่คัดพิเศษ เส้นตอกบางเรียบ สานแน่นประณีต ใช้งานได้ยาวนาน","sort_order":0,"id":3},{"village_id":4,"name":"วิสาหกิจผักปลอดสารพิษ","description":"ผลผลิตพืชผักปลอดภัยจากกลุ่มวิสาหกิจชุมชน ปลูกในโรงเรือน สะอาด กรอบ อร่อย ปลอดภัย 100%","sort_order":0,"id":4},{"village_id":5,"name":"ลูกประคบ","description":"ลูกประคบสมุนไพรสูตรโบราณ อัดแน่นด้วยไพล ขมิ้น และสมุนไพรสด ช่วยคลายเส้นและบรรเทาความเมื่อยล้า","sort_order":0,"id":5},{"village_id":6,"name":"ผักปลอดสารพิษ","description":"ผักสดอินทรีย์ที่หล่อเลี้ยงด้วยตาน้ำซับธรรมชาติ สะอาด ปลอดภัย ได้มาตรฐานอาหารปลอดภัย","sort_order":0,"id":6},{"village_id":7,"name":"ลูกประคบ","description":"ลูกประคบสมุนไพรเตาถ่านสูตรดั้งเดิม ช่วยคลายกล้ามเนื้อ กระตุ้นการไหลเวียนโลหิตอย่างมีประสิทธิภาพ","sort_order":0,"id":7}],"stories":[{"id":1,"village_id":1,"category":"เรื่องเด่น (Featured)","title":"เสน่ห์แห่งไหมน้ำเตย: ภูมิปัญญาเส้นไหมกลิ่นอายธรรมชาติแห่งบ้านห้วยเตย","img":"https://lh3.googleusercontent.com/aida/AEtjO1WbC8-SqI8psPysLSZbIwyidSaXI4iDI3S8L-Fz28ukIZEMddqb6jI3fF653h_Gbi2RK6OISFf0o1GtU6qacPR5vULyld99fmwnarAd8oeojIEBe9z_KWgITim9Zu95Lw1iR3wZtmtD2NUTyRs_uwYbCuVeuI-ogYsPra08c_6It4aYmjr2RzFjNN2WxsnQc9EWxlTHuabayprB0VG5XdzlZrdtaQjCFNKaRCzUq84uVjQtjCEDBJUg4Q","quote":"“ไหมน้ำเตยคือจิตวิญญาณของบ้านห้วยเตย เส้นไหมที่สาวด้วยมืออย่างประณีตจะให้ความเงางามและสัมผัสที่เป็นธรรมชาติ”","body":"แม่ครูสมร บุญทา ปราชญ์ชุมชนบ้านห้วยเตย ถ่ายทอดเรื่องราวการผลิต \"ไหมน้ำเตย\" ซึ่งเป็นผลิตภัณฑ์เด่นเพียงหนึ่งเดียวของหมู่ที่ 1 ที่ผูกพันกับชุมชนมายาวนาน\n\nกระบวนการผลิตไหมน้ำเตยเริ่มตั้งแต่การปลูกหม่อนเลี้ยงไหมอย่างใส่ใจ การสาวไหมด้วยมือทีละเส้นเพื่อให้ได้ขนาดที่สม่ำเสมอ เส้นไหมน้ำเตยจึงมีความเหนียวนุ่ม ยืดหยุ่น และมีประกายเงางามอันเป็นอัตลักษณ์สำคัญของตำบลห้วยเตย","read_minutes":5,"featured":1,"published":1},{"id":2,"village_id":2,"category":"หัตถศิลป์พื้นบ้าน","title":"ความประณีตแห่งเสื่อทอมือลายโบราณ: มรดกหัตถกรรมบ้านห้วยฝาย","img":"https://lh3.googleusercontent.com/aida/AEtjO1WEgsoW_1NVexFydvBLszJB26SSGSkotZkSbDNTjSijmib5B4J8yynw_9Xh2O7J3LoBQJwmrBOSIu-DbTQWQWu4lLBnBVr3KPKGhQ_nNA3YTfCX3ZVyIsGUN_qYtu--Okpn3g3eZ8NTYGGd0X4NWnRAghyWQ3NyCBKga9RHjYtWojjztKFfPgOENCn-i83diR_hG1otk9M6Rqi6gUvIMD6rhdIo8uLzOWBAx8DjZnUMsnIkDppGIQACbI4","quote":"“เสื่อทอมือลายโบราณไม่ใช่เพียงเครื่องปูลาด แต่มันคือลวดลายที่บันทึกความทรงจำของบรรพชน”","body":"ที่บ้านห้วยฝาย เสียงกระทบของฟืมทอเสื่อดังเป็นจังหวะสม่ำเสมอ กลุ่มแม่บ้านร่วมแรงร่วมใจทอ \"เสื่อทอมือลายโบราณ\" จากต้นกกธรรมชาติที่เก็บเกี่ยวริมฝายน้ำ\n\nแม่สมหมายเล่าว่า การทอเสื่อลายโบราณต้องอาศัยสมาธิและการนับเส้นกกอย่างแม่นยำ ลวดลายโบราณที่สืบทอดกันมาให้ความสวยงาม ทรงคุณค่า และทนทานต่อการใช้งานหลายสิบปี","read_minutes":4,"featured":0,"published":1},{"id":3,"village_id":3,"category":"หัตถกรรมจักสาน","title":"ศิลปะสานตะกร้าไม้ไผ่: คุณค่าที่ไม่มีวันเลือนหาย ณ บ้านโสกผาแก้ว","img":"https://lh3.googleusercontent.com/aida/AEtjO1VaOzAAGNHVxTRMemqi33bbhkNc9Kitwy9CPYk3pYWxNEf_5TvNN0V6icDgaWNXihz7JMMgc4uBTrTT1XqmyoKBLmmhkGG1Ip2AXspT1hZ03AZGUkcfxw44t0RcfkWMp6IgGMhdZ_xLqtEocubn2QxnbNb95YCRzxe88lUUb2GBaLXwmgzxa1E7GrxNET5FwUvQngwimO48YkeOBKDN12wvJWh8zTYC48S0zb2OyAyIRNCg7VTsYV5i9KM","quote":"“งานสานตะกร้าคือการร้อยเรียงความอดทน ตอกแต่ละเส้นที่สานลงไปต้องแน่นและสม่ำเสมอ ตะกร้าถึงจะแข็งแรง”","body":"พ่อบุญมี ช่างจักสานแห่งบ้านโสกผาแก้ว นำพาชาวบ้านอนุรักษ์การ \"สานตะกร้า\" ไม้ไผ่ ซึ่งเป็นผลิตภัณฑ์หลักของชุมชน\n\nด้วยการเลือกไม้ไผ่ที่แก่จัด นำมาผ่าและเหลาตอกให้เรียบเนียน จากนั้นจึงขึ้นรูปสานตะกร้าด้วยลายขิดและลายขัดโบราณ ทำให้ตะกร้าของบ้านโสกผาแก้วมีน้ำหนักเบา แข็งแรงทนทาน เหมาะสำหรับใส่ของและของฝากพื้นถิ่น","read_minutes":5,"featured":0,"published":1},{"id":4,"village_id":4,"category":"วิสาหกิจต้นแบบ","title":"วิสาหกิจผักปลอดสารพิษ: พลังชุมชนสีเขียวแห่งบ้านสว่าง","img":"https://lh3.googleusercontent.com/aida-public/AB6AXuCefBZiTJ7s9k6EwEvWUr9Y_Xmx6OCjnYiG2IvRaWcmMctdnl_ffAw50mr6l0AqXBzJvgtyQSIytaYYIF7z4ZrAoAdt7z8QsnPGuOjk03jEUkpCafywqdk_18qCXHEcJtqcq0o9VAVsvMnybitYsUlFY1-5JE9n3BsEFX3e1W4b5b3yF9JwmvXdB6nqyTeoYdtavMjQ3RT495izsAV2pXMQvQ6kGeLEXf96kHV0_BAxXDIvCqxII5kd","quote":"“เรามุ่งมั่นสร้างวิสาหกิจผักปลอดสารพิษ เพื่อให้คนกินได้สุขภาพ และคนปลูกมีรอยยิ้ม”","body":"วิชัย สว่างวงศ์ นำชมแปลงผักกางมุ้งของกลุ่ม \"วิสาหกิจผักปลอดสารพิษ\" บ้านสว่าง ที่รวมพลังชาวบ้านปรับเปลี่ยนวิถีเกษตรเคมีสู่ระบบอินทรีย์เต็มรูปแบบ\n\nการรวมกลุ่มเป็นวิสาหกิจชุมชนทำให้สามารถวางแผนผลผลิตได้อย่างมีประสิทธิภาพ ส่งผักปลอดสารพิษสดใหม่ตรงสู่ผู้บริโภคทุกวันอย่างต่อเนื่องและยั่งยืน","read_minutes":4,"featured":0,"published":1},{"id":5,"village_id":5,"category":"ศาสตร์สมุนไพร","title":"ศาสตร์แห่งลูกประคบสมุนไพร: ตำรับผ่อนคลายกล้ามเนื้อบ้านหลุบเลา","img":"https://lh3.googleusercontent.com/aida-public/AB6AXuBiJyyQUNqL1edFprPRUz-EY9c0-ciQj_iteS0Th45Ea3wbIYDRHyJc8O0uXZjlHSnu9iRafHgWhv4y-lAcFR0ieJZ_OvLm5R5VxFPPIYMPFPEgxCEpmdGJ5Z8n1GHMLBU5yVT59iK20-wWChqCZiZrE7MVmPEu-82ew5sHFm9mV0mloLa6IWBkdt8mQPJj-SzdXfw5bGqZUoFzAHUFd6vDGHVnvLk5XcNnWnK2JdBxJBHuGBPSbf3v","quote":"“ลูกประคบที่ดีต้องมาจากสมุนไพรสดในดินที่อุดมสมบูรณ์ ไพลอดทน ขมิ้นเข้มข้น เพื่อการบำบัดที่แท้จริง”","body":"ป้าประนอม สุขสำราญ เล่าถึงผลิตภัณฑ์เด่นของบ้านหลุบเลานั่นคือ \"ลูกประคบ\" ซึ่งคัดสรรเหง้าไพลและขมิ้นชันที่ปลูกในแอ่งดินชุ่มชื้นของหมู่บ้าน\n\nสมุนไพรสดถูกนำมาสับ บด และคลุกเคล้ากับเกลือสมุทรและการบูร ก่อนจะห่อด้วยผ้าฝ้ายอย่างแน่นหนา พร้อมส่งต่อความผ่อนคลายให้แก่ผู้ใช้ทั่วประเทศ","read_minutes":5,"featured":0,"published":1},{"id":6,"village_id":6,"category":"เกษตรอินทรีย์","title":"ผักปลอดสารพิษจากตาน้ำซับ: วิถีเกษตรอินทรีย์บ้านซำโอง","img":"https://lh3.googleusercontent.com/aida-public/AB6AXuAERj6Z9MSBZTh96BUx9GO8lL_M-k24tZjs8a4p3eQBWaYM7enviTllPUzIaocwekY4hwA-iEHq3bAFMGXztr2mkCfWhj4wJP-X4H5OlJJfvTQrVyPJeMvj0hRc0YgLDH4IZG__ln4kJnnQtyXWDOKChID7PIS1m379MJeZrXlIwuZOykwI9oCcvZ4aQcXnwdGh_WLyIC7AWQbytPJmf9cL8M9pVGn6btGe-rmDx-A17stk_NIlqzVi","quote":"“ตาน้ำซับซำโองคือน้ำหล่อเลี้ยงชีวิต ผักปลอดสารพิษของเราจึงเติบโตด้วยความบริสุทธิ์จากธรรมชาติ”","body":"ชาวบ้านซำโองรวมตัวกันใช้น้ำจากตาน้ำซับบริสุทธิ์ในการปลูก \"ผักปลอดสารพิษ\" โดยไม่พึ่งพาสารเคมีหรือยาฆ่าแมลงใดๆ\n\nผลผลิตผักปลอดสารพิษของบ้านซำโองจึงมีรสชาติหวาน กรอบ และปลอดภัย ได้รับความไว้วางใจจากผู้บริโภคและตลาดสุขภาพอย่างกว้างขวาง","read_minutes":4,"featured":0,"published":1},{"id":7,"village_id":7,"category":"แพทย์แผนไทย","title":"ลูกประคบเตาฟืนโบราณ: ศาสตร์คลายเส้นแห่งบ้านหนองขาม","img":"https://lh3.googleusercontent.com/aida/AEtjO1X7GRhRoQXFiaPOkAd--ZBJpAoPAGmDxBdjM7WWbtf-DAJf7OGdojB9V-LxBp2igfiVl6qVC4ZqkLyGx0y64RMkul-qdkmpYGV_H8YdfUaSx0Q5iZTp92JlOdbZsVZGLSh409AmaonMj_Nb02jKLNoXvoOa-ir0LJSPLUfL_S3bfXpOT47zTlKKDRlAaQp8PGF4up_5dyaFcUzjDy4qtEK7dtU6MLHiirHocMdKbbj_OccecBf53z4Wrrk","quote":"“ไออุ่นจากลูกประคบเตาฟืนจะซึมซาบลึก ช่วยคลายความตึงเครียดของกล้ามเนื้อได้อย่างดีเยี่ยม”","body":"แม่บัวพา ใจมั่น ประธานกลุ่มบ้านหนองขาม ถ่ายทอดความภูมิใจในผลิตภัณฑ์ \"ลูกประคบ\" สมุนไพรสูตรเฉพาะถิ่นที่มีการผสมผสานใบมะขามแก่และสมุนไพรพื้นบ้าน\n\nเมื่อนำลูกประคบไปนึ่งบนเตาฟืน กลิ่นหอมระเหยจะกระจายตัวอย่างนุ่มนวล ช่วยบรรเทาอาการปวดเมื่อยได้อย่างวิเศษ สร้างชื่อเสียงให้บ้านหนองขามเป็นที่รู้จักด้านลูกประคบสมุนไพร","read_minutes":6,"featured":0,"published":1}],"messages":[]};
+const DB_KEY = 'huaitoei-db-v1';
+let DB = (() => {
+  try { const d = JSON.parse(localStorage.getItem(DB_KEY)); if (d && Array.isArray(d.villages) && Array.isArray(d.products) && Array.isArray(d.stories)) return { messages: [], ...d }; } catch (e) {}
+  return JSON.parse(JSON.stringify(SEED));
+})();
+function dbSave() { try { localStorage.setItem(DB_KEY, JSON.stringify(DB)); } catch (e) { showToast('บันทึกลงเบราว์เซอร์ไม่ได้ (พื้นที่เก็บข้อมูลถูกปิดหรือเต็ม)', 'error'); } }
+const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+let villages = {}, stories = {};
+
+// Build the view-models the page UI expects from DB
+function loadData() {
+  villages = {}; stories = {};
+  DB.villages.forEach((v) => {
+    villages[v.moo] = {
+      title: `หมู่ที่ ${v.moo} ${v.name}`, tag: v.tag, geo: v.geo, img: v.img, founded: v.founded,
+      households: `${Number(v.households).toLocaleString('th-TH')} ครัวเรือน`, groups: `${v.groups} กลุ่มวิสาหกิจ`, history: v.history,
+      products: DB.products.filter((p) => p.village_id === v.id).sort((a, b) => a.sort_order - b.sort_order).map((p) => ({ name: p.name, desc: p.description })),
+      contactLead: v.contact_lead, contactDetails: v.contact_details,
+    };
+  });
+  DB.stories.filter((s) => s.published).forEach((s) => {
+    const v = DB.villages.find((x) => x.id === s.village_id);
+    stories['story' + s.id] = { meta: v ? `ม.${v.moo} ${v.name} • ${v.category}` : '', cat: s.category, title: s.title, img: s.img, quote: s.quote, text: s.body };
+  });
+}
+loadData();
+
+// 3. UI Interactions & Event Handlers
+function showToast(msg, icon = 'check_circle') {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMessage').innerText = msg;
+  document.getElementById('toastIcon').innerText = icon;
+  toast.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
+  setTimeout(() => {
+    toast.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
+  }, 3000);
+}
+
+let isFav = false;
+function toggleFav() {
+  isFav = !isFav;
+  const icon = document.getElementById('favIcon');
+  const badge = document.getElementById('favBadge');
+  if (isFav) {
+    icon.classList.add('text-red-500');
+    badge.innerText = '4';
+    showToast('บันทึกตำบลห้วยเตยในรายการโปรดแล้ว', 'favorite');
+  } else {
+    icon.classList.remove('text-red-500');
+    badge.innerText = '3';
+    showToast('นำออกจากรายการโปรดแล้ว', 'favorite_border');
+  }
+}
+
+function handlePhoneCall() {
+  const confirmCall = confirm("ต้องการโทรติดต่อสำนักงาน อบต. ห้วยเตย (เบอร์ 043-123-456) หรือไม่?");
+  if (confirmCall) {
+    window.location.href = "tel:043123456";
+  }
+}
+
+// 4. Village Modal Functions (Strictly single product per village)
+function openVillage(id) {
+  const data = villages[id];
+  if (!data) return;
+  document.getElementById('mTitle').innerText = data.title;
+  document.getElementById('mTag').innerText = data.tag;
+  document.getElementById('mGeo').innerText = data.geo;
+  document.getElementById('mImg').src = data.img;
+  document.getElementById('mFounded').innerText = data.founded;
+  document.getElementById('mHouseholds').innerText = data.households;
+  document.getElementById('mGroups').innerText = data.groups;
+  document.getElementById('mHistory').innerText = data.history;
+  document.getElementById('mContactLead').innerText = data.contactLead;
+  document.getElementById('mContactDetails').innerText = data.contactDetails;
+
+  const pContainer = document.getElementById('mProducts');
+  pContainer.innerHTML = '';
+  data.products.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'p-3 rounded-lg bg-gray-50 border border-gray-200';
+    item.innerHTML = `<div class="font-bold text-xs text-[#012d1d]">${esc(p.name)}</div><div class="text-[11px] text-gray-600 mt-0.5">${esc(p.desc)}</div>`;
+    pContainer.appendChild(item);
+  });
+
+  const modal = document.getElementById('vModal');
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVillage() {
+  document.getElementById('vModal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+
+// 5. Story Modal Functions
+function openStory(key) {
+  const story = stories[key];
+  if (!story) return;
+  document.getElementById('sMeta').innerText = story.meta;
+  document.getElementById('sCategory').innerText = story.cat;
+  document.getElementById('sTitle').innerText = story.title;
+  document.getElementById('sImg').src = story.img;
+  document.getElementById('sQuote').innerText = story.quote;
+  document.getElementById('sText').innerText = story.text;
+  document.getElementById('sModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeStory() {
+  document.getElementById('sModal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+
+// 6. Contact Modal Functions
+function openContactModal() {
+  document.getElementById('cModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeContactModal() {
+  document.getElementById('cModal').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+}
+
+function submitContact(e) {
+  e.preventDefault();
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  const message = document.getElementById('cMsg').value.trim();
+  if (!/^[0-9+\-\s()]{8,20}$/.test(phone)) return showToast('เบอร์โทรไม่ถูกต้อง', 'error');
+  DB.messages.push({ id: DB.messages.reduce((m, x) => Math.max(m, x.id), 0) + 1, name, phone, purpose: document.getElementById('cTopic').value, message, status: 'new', created_at: new Date().toISOString() });
+  dbSave();
+  closeContactModal();
+  showToast(`บันทึกข้อความของคุณ ${name} แล้ว (เก็บในเบราว์เซอร์นี้) เจ้าหน้าที่ดูได้ที่หน้าผู้ดูแล`, 'send');
+  document.getElementById('cName').value = '';
+  document.getElementById('cPhone').value = '';
+  document.getElementById('cMsg').value = '';
+}
+
+// 7. Filter & Search Functions matching the specified categories
+function filterByCat(cat, btn) {
+  document.querySelectorAll('.f-btn').forEach(b => {
+    b.className = 'f-btn px-3.5 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold whitespace-nowrap';
+  });
+  if (btn) {
+    btn.className = 'f-btn px-3.5 py-1.5 rounded-full bg-[#012d1d] text-white text-xs font-semibold whitespace-nowrap';
+  }
+
+  const cards = document.querySelectorAll('.v-card');
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-cat');
+    if (cat === 'all' || cardCat === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function handleSearch() {
+  const vId = document.getElementById('heroSelect').value;
+  const kw = document.getElementById('heroKeyword').value.trim().toLowerCase();
+
+  document.getElementById('villages').scrollIntoView({ behavior: 'smooth' });
+
+  const cards = document.querySelectorAll('.v-card');
+  let matchCount = 0;
+
+  cards.forEach(card => {
+    const cardId = card.getAttribute('data-id');
+    const text = card.innerText.toLowerCase();
+    const matchVillage = (vId === 'all' || cardId === vId);
+    const matchKeyword = (!kw || text.includes(kw));
+
+    if (matchVillage && matchKeyword) {
+      card.style.display = 'flex';
+      matchCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  showToast(`พบข้อมูลที่ตรงกับเงื่อนไข ${matchCount} หมู่บ้าน`, 'search');
+}
+
+// Keyboard ESC listener to close modals
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeVillage();
+    closeStory();
+    closeContactModal();
+  }
+});
+</script>
+<script>
+(function () {
+  const FIELDS = {
+    villages: [['moo','เลขหมู่','number'],['name','ชื่อหมู่บ้าน'],['category','หมวดผลิตภัณฑ์เด่น'],['tag','แท็ก'],['geo','ระยะทาง'],['img','URL รูปภาพ'],['founded','ก่อตั้ง'],['households','ครัวเรือน','number'],['groups','กลุ่มอาชีพ','number'],['history','ประวัติความเป็นมา','area'],['contact_lead','ผู้ประสานงาน'],['contact_details','ข้อมูลติดต่อ']],
+    products: [['village_id','หมู่บ้าน','village'],['name','ชื่อผลิตภัณฑ์'],['description','รายละเอียด','area'],['price','ราคา (บาท)','number'],['img','URL รูปภาพ'],['badge','ป้ายกำกับ (เช่น OTOP)'],['sort_order','ลำดับ','number']],
+    stories: [['village_id','หมู่บ้าน','village'],['title','หัวข้อ'],['category','หมวด'],['img','URL รูปภาพ'],['quote','คำพูดเด่น','area'],['body','เนื้อหา','area'],['read_minutes','เวลาอ่าน (นาที)','number'],['featured','เรื่องเด่น','check'],['published','เผยแพร่','check']],
+  };
+  const LIST = { villages:['moo','name','category','households'], products:['village_id','name','price','badge'], stories:['village_id','title','category','published'], messages:['created_at','name','phone','purpose','message','status'] };
+  const LABEL = { villages:'หมู่บ้าน', products:'ผลิตภัณฑ์', stories:'เรื่องเล่า', messages:'ข้อความจากผู้ใช้' };
+  const COLN = { moo:'หมู่', name:'ชื่อ', category:'หมวด', households:'ครัวเรือน', village_id:'หมู่บ้าน', price:'ราคา', badge:'ป้าย', title:'หัวข้อ', published:'สถานะ', phone:'เบอร์โทร', purpose:'วัตถุประสงค์', message:'ข้อความ', status:'สถานะ', created_at:'เวลา' };
+  const PURPOSE = { visit:'ศึกษาดูงาน', buy:'สั่งซื้อ', info:'สอบถาม' };
+  const STATUS = { new:'ใหม่', read:'อ่านแล้ว', done:'เสร็จสิ้น' };
+  const REQ = { villages:['moo','name','category'], products:['village_id','name'], stories:['title','body'] };
+  let tab = 'villages';
+
+  const h = (tag, props = {}, ...kids) => {
+    const e = Object.assign(document.createElement(tag), props);
+    kids.flat().forEach((k) => e.append(k instanceof Node ? k : document.createTextNode(k ?? '')));
+    return e;
+  };
+  const root = h('div', { id: 'admRoot', hidden: true });
+  root.innerHTML = `<header class="adm-h"><b>ห้วยเตย • จัดการข้อมูล</b><span><button id="admExp">ส่งออก JSON</button> <button id="admImp">นำเข้า JSON</button> <button id="admRst">รีเซ็ต</button> <button id="admX">ปิด</button></span></header>
+  <div class="adm-note">ข้อมูลที่แก้ไขบันทึกในเบราว์เซอร์เครื่องนี้เท่านั้น (ไม่มีเซิร์ฟเวอร์ และไม่มีระบบล็อกอิน) — กด "ส่งออก JSON" เพื่อสำรองข้อมูล</div>
+  <main class="adm-m"><nav id="admTabs"></nav><div class="adm-bar"><h3 id="admTitle"></h3><button class="pri" id="admAdd">+ เพิ่มข้อมูล</button></div>
+  <div class="adm-card"><table><thead id="admHead"></thead><tbody id="admBody"></tbody></table></div></main>
+  <dialog id="admDlg"><form id="admForm"></form></dialog><input type="file" id="admFile" accept="application/json" hidden>`;
+  document.body.append(root);
+  const $ = (id) => document.getElementById(id);
+  const openBtn = h('button', { id: 'admOpen', onclick: () => { location.hash = 'admin'; } }, 'ผู้ดูแล');
+  document.body.append(openBtn);
+
+  const vName = (id) => { const v = DB.villages.find((x) => x.id === id); return v ? `ม.${v.moo} ${v.name}` : '—'; };
+  function cell(c, v) {
+    if (c === 'village_id') return vName(v);
+    if (c === 'purpose') return PURPOSE[v] || v;
+    if (c === 'published') return v ? 'เผยแพร่' : 'ซ่อน';
+    if (c === 'created_at') return new Date(v).toLocaleString('th-TH');
+    if (c === 'status') return h('span', { className: 'pill ' + v }, STATUS[v]);
+    if (c === 'price') return v == null ? '—' : Number(v).toLocaleString('th-TH');
+    return String(v ?? '').slice(0, 80);
+  }
+  function commit() { dbSave(); loadData(); render(); }
+
+  function render() {
+    $('admTabs').replaceChildren(...Object.keys(LABEL).map((k) => h('button', { className: k === tab ? 'on' : '', onclick: () => { tab = k; render(); } }, LABEL[k])));
+    $('admTitle').textContent = LABEL[tab]; $('admAdd').hidden = tab === 'messages';
+    const rows = tab === 'messages' ? [...DB.messages].reverse() : [...DB[tab]].sort((a, b) => (a.moo ?? a.village_id ?? 0) - (b.moo ?? b.village_id ?? 0) || a.id - b.id);
+    $('admHead').replaceChildren(h('tr', {}, ...LIST[tab].map((c) => h('th', {}, COLN[c] || c)), h('th')));
+    $('admBody').replaceChildren(...rows.map((r) => h('tr', {}, ...LIST[tab].map((c) => h('td', {}, cell(c, r[c]))), h('td', { className: 'act' }, ...actions(r)))));
+  }
+  function actions(r) {
+    const del = h('button', { className: 'danger', onclick: () => {
+      if (!confirm('ยืนยันการลบ? การลบหมู่บ้านจะลบผลิตภัณฑ์ของหมู่บ้านนั้นด้วย')) return;
+      if (tab === 'villages') { DB.products = DB.products.filter((p) => p.village_id !== r.id); DB.stories.forEach((s) => { if (s.village_id === r.id) s.village_id = null; }); }
+      DB[tab] = DB[tab].filter((x) => x.id !== r.id); commit();
+    } }, 'ลบ');
+    if (tab === 'messages') return [h('button', { onclick: () => { r.status = r.status === 'new' ? 'read' : 'done'; commit(); } }, r.status === 'new' ? 'ทำเครื่องหมายอ่านแล้ว' : r.status === 'read' ? 'เสร็จสิ้น' : '✓'), ' ', del];
+    return [h('button', { onclick: () => edit(r) }, 'แก้ไข'), ' ', del];
+  }
+
+  function edit(row) {
+    const f = $('admForm'), inputs = {};
+    f.replaceChildren(h('h3', {}, (row ? 'แก้ไข' : 'เพิ่ม') + LABEL[tab]));
+    for (const [key, label, type] of FIELDS[tab]) {
+      let el;
+      if (type === 'area') el = h('textarea');
+      else if (type === 'village') el = h('select', {}, h('option', { value: '' }, '— ไม่ระบุ —'), ...DB.villages.map((v) => h('option', { value: v.id }, `ม.${v.moo} ${v.name}`)));
+      else if (type === 'check') el = h('input', { type: 'checkbox' });
+      else el = h('input', { type: type === 'number' ? 'number' : 'text', step: key === 'price' ? 'any' : '1' });
+      const val = row ? row[key] : (key === 'published' ? 1 : '');
+      if (type === 'check') el.checked = !!val; else el.value = val ?? '';
+      inputs[key] = [el, type];
+      f.append(h('label', {}, label), el);
+    }
+    f.append(h('div', { className: 'adm-row' }, h('button', { type: 'button', onclick: () => $('admDlg').close() }, 'ยกเลิก'), h('button', { className: 'pri', type: 'submit' }, 'บันทึก')));
+    f.onsubmit = (ev) => {
+      ev.preventDefault();
+      const body = {};
+      for (const [k, [el, type]] of Object.entries(inputs)) {
+        if (type === 'check') body[k] = el.checked ? 1 : 0;
+        else if (type === 'village') body[k] = el.value === '' ? null : Number(el.value);
+        else if (type === 'number') body[k] = el.value === '' ? (k === 'price' ? null : 0) : Number(el.value);
+        else body[k] = el.value.trim();
+      }
+      const missing = REQ[tab].filter((k) => body[k] === '' || body[k] == null || body[k] === 0);
+      if (missing.length) return alert('กรุณากรอก: ' + missing.map((k) => COLN[k] || k).join(', '));
+      if (body.img && !/^(https?:\/\/|data:image\/)/i.test(body.img)) return alert('URL รูปภาพต้องขึ้นต้นด้วย http(s)://');
+      if (tab === 'villages' && DB.villages.some((v) => v.moo === body.moo && v !== row)) return alert('มีหมู่ที่นี้อยู่แล้ว');
+      if (row) Object.assign(row, body); else DB[tab].push({ id: DB[tab].reduce((m, x) => Math.max(m, x.id || 0), 0) + 1, ...body });
+      $('admDlg').close(); commit();
+    };
+    $('admDlg').showModal();
+  }
+
+  $('admAdd').onclick = () => edit(null);
+  $('admX').onclick = () => { location.hash = ''; };
+  $('admExp').onclick = () => {
+    const a = h('a', { href: URL.createObjectURL(new Blob([JSON.stringify(DB, null, 2)], { type: 'application/json' })), download: 'huaitoei-data.json' });
+    document.body.append(a); a.click(); a.remove();
+  };
+  $('admImp').onclick = () => $('admFile').click();
+  $('admFile').onchange = async (e) => {
+    try {
+      const d = JSON.parse(await e.target.files[0].text());
+      if (!['villages', 'products', 'stories'].every((k) => Array.isArray(d[k]))) throw 0;
+      d.messages = Array.isArray(d.messages) ? d.messages : []; DB = d; commit(); alert('นำเข้าข้อมูลเรียบร้อย');
+    } catch { alert('ไฟล์ไม่ถูกต้อง (ต้องมี villages, products, stories)'); }
+    e.target.value = '';
+  };
+  $('admRst').onclick = () => { if (confirm('คืนค่าข้อมูลตั้งต้นทั้งหมด? ข้อมูลที่แก้ไขและข้อความจะหายไป')) { try { localStorage.removeItem(DB_KEY); } catch {} location.hash = ''; location.reload(); } };
+
+  const sync = () => { const on = location.hash === '#admin'; root.hidden = !on; openBtn.hidden = on; document.body.style.overflow = on ? 'hidden' : ''; if (on) render(); };
+  addEventListener('hashchange', sync); sync();
+})();
+</script>
+</body></html>
